@@ -26,7 +26,7 @@ export const Route = createFileRoute("/_authenticated/owner/cleaning")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: OwnerCleaning;
+  component: OwnerCleaning,
 });
 
 function OwnerCleaning() {
