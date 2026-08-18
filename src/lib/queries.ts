@@ -69,15 +69,16 @@ export function prospectsQuery() {
 export function visitsQuery(filters?: { assistantId?: string }) {
   return {
     queryKey: ["visits", filters ?? {}],
-    queryFn: () => {
+    queryFn: async () => {
       let q = supabase
         .from("visits")
         .select(
-          "*, prospect:prospects(id, full_name, phone), property:properties(id, name), room:rooms(id, room_number), assistant:profiles!visits_assistant_id_fkey(full_name)",
+          "*, prospect:prospects(id, full_name, phone), property:properties(id, name), room:rooms(id, room_number)",
         )
         .order("visit_date", { ascending: false });
       if (filters?.assistantId) q = q.eq("assistant_id", filters.assistantId);
-      return run(q);
+      const rows = await run(q);
+      return attachProfiles(rows as Row[], "assistant_id", "assistant");
     },
   };
 }
