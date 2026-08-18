@@ -10,33 +10,303 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as TentangRouteImport } from './routes/tentang'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
+import { Route as AuthenticatedAssistantRouteRouteImport } from './routes/_authenticated/assistant/route'
+import { Route as AuthenticatedHelperRouteRouteImport } from './routes/_authenticated/helper/route'
+import { Route as AuthenticatedOwnerRouteRouteImport } from './routes/_authenticated/owner/route'
+import { Route as AuthenticatedTenantRouteRouteImport } from './routes/_authenticated/tenant/route'
+import { Route as KostIndexRouteImport } from './routes/kost/index'
+import { Route as KostIdRouteImport } from './routes/kost/$id'
+import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin/dashboard'
+import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin/notifications'
+import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
+import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
+import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
+import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
+import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
+import { Route as AuthenticatedOwnerNotificationsRouteImport } from './routes/_authenticated/owner/notifications'
+import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
+import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TentangRoute = TentangRouteImport.update({
+  id: '/tentang',
+  path: '/tentang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAssistantRouteRoute =
+  AuthenticatedAssistantRouteRouteImport.update({
+    id: '/assistant',
+    path: '/assistant',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedHelperRouteRoute =
+  AuthenticatedHelperRouteRouteImport.update({
+    id: '/helper',
+    path: '/helper',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOwnerRouteRoute = AuthenticatedOwnerRouteRouteImport.update({
+  id: '/owner',
+  path: '/owner',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTenantRouteRoute =
+  AuthenticatedTenantRouteRouteImport.update({
+    id: '/tenant',
+    path: '/tenant',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const KostIndexRoute = KostIndexRouteImport.update({
+  id: '/kost/',
+  path: '/kost/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KostIdRoute = KostIdRouteImport.update({
+  id: '/kost/$id',
+  path: '/kost/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminDashboardRoute =
+  AuthenticatedAdminDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminNotificationsRoute =
+  AuthenticatedAdminNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAssistantDashboardRoute =
+  AuthenticatedAssistantDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
+const AuthenticatedAssistantNotificationsRoute =
+  AuthenticatedAssistantNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
+const AuthenticatedHelperDashboardRoute =
+  AuthenticatedHelperDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
+  } as any)
+const AuthenticatedHelperNotificationsRoute =
+  AuthenticatedHelperNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
+  } as any)
+const AuthenticatedOwnerDashboardRoute =
+  AuthenticatedOwnerDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedOwnerNotificationsRoute =
+  AuthenticatedOwnerNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedTenantDashboardRoute =
+  AuthenticatedTenantDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
+const AuthenticatedTenantNotificationsRoute =
+  AuthenticatedTenantNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kontak': typeof KontakRoute
+  '/login': typeof LoginRoute
+  '/tentang': typeof TentangRoute
+  '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/assistant': typeof AuthenticatedAssistantRouteRouteWithChildren
+  '/helper': typeof AuthenticatedHelperRouteRouteWithChildren
+  '/owner': typeof AuthenticatedOwnerRouteRouteWithChildren
+  '/tenant': typeof AuthenticatedTenantRouteRouteWithChildren
+  '/kost/$id': typeof KostIdRoute
+  '/kost/': typeof KostIndexRoute
+  '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
+  '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
+  '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kontak': typeof KontakRoute
+  '/login': typeof LoginRoute
+  '/tentang': typeof TentangRoute
+  '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/assistant': typeof AuthenticatedAssistantRouteRouteWithChildren
+  '/helper': typeof AuthenticatedHelperRouteRouteWithChildren
+  '/owner': typeof AuthenticatedOwnerRouteRouteWithChildren
+  '/tenant': typeof AuthenticatedTenantRouteRouteWithChildren
+  '/kost/$id': typeof KostIdRoute
+  '/kost': typeof KostIndexRoute
+  '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
+  '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
+  '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/kontak': typeof KontakRoute
+  '/login': typeof LoginRoute
+  '/tentang': typeof TentangRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/_authenticated/assistant': typeof AuthenticatedAssistantRouteRouteWithChildren
+  '/_authenticated/helper': typeof AuthenticatedHelperRouteRouteWithChildren
+  '/_authenticated/owner': typeof AuthenticatedOwnerRouteRouteWithChildren
+  '/_authenticated/tenant': typeof AuthenticatedTenantRouteRouteWithChildren
+  '/kost/$id': typeof KostIdRoute
+  '/kost/': typeof KostIndexRoute
+  '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
+  '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
+  '/_authenticated/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/kontak'
+    | '/login'
+    | '/tentang'
+    | '/admin'
+    | '/assistant'
+    | '/helper'
+    | '/owner'
+    | '/tenant'
+    | '/kost/$id'
+    | '/kost/'
+    | '/admin/dashboard'
+    | '/admin/notifications'
+    | '/assistant/dashboard'
+    | '/assistant/notifications'
+    | '/helper/dashboard'
+    | '/helper/notifications'
+    | '/owner/dashboard'
+    | '/owner/notifications'
+    | '/tenant/dashboard'
+    | '/tenant/notifications'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/kontak'
+    | '/login'
+    | '/tentang'
+    | '/admin'
+    | '/assistant'
+    | '/helper'
+    | '/owner'
+    | '/tenant'
+    | '/kost/$id'
+    | '/kost'
+    | '/admin/dashboard'
+    | '/admin/notifications'
+    | '/assistant/dashboard'
+    | '/assistant/notifications'
+    | '/helper/dashboard'
+    | '/helper/notifications'
+    | '/owner/dashboard'
+    | '/owner/notifications'
+    | '/tenant/dashboard'
+    | '/tenant/notifications'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/kontak'
+    | '/login'
+    | '/tentang'
+    | '/_authenticated/admin'
+    | '/_authenticated/assistant'
+    | '/_authenticated/helper'
+    | '/_authenticated/owner'
+    | '/_authenticated/tenant'
+    | '/kost/$id'
+    | '/kost/'
+    | '/_authenticated/admin/dashboard'
+    | '/_authenticated/admin/notifications'
+    | '/_authenticated/assistant/dashboard'
+    | '/_authenticated/assistant/notifications'
+    | '/_authenticated/helper/dashboard'
+    | '/_authenticated/helper/notifications'
+    | '/_authenticated/owner/dashboard'
+    | '/_authenticated/owner/notifications'
+    | '/_authenticated/tenant/dashboard'
+    | '/_authenticated/tenant/notifications'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  KontakRoute: typeof KontakRoute
+  LoginRoute: typeof LoginRoute
+  TentangRoute: typeof TentangRoute
+  KostIdRoute: typeof KostIdRoute
+  KostIndexRoute: typeof KostIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +318,267 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tentang': {
+      id: '/tentang'
+      path: '/tentang'
+      fullPath: '/tentang'
+      preLoaderRoute: typeof TentangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assistant': {
+      id: '/_authenticated/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AuthenticatedAssistantRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/helper': {
+      id: '/_authenticated/helper'
+      path: '/helper'
+      fullPath: '/helper'
+      preLoaderRoute: typeof AuthenticatedHelperRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/owner': {
+      id: '/_authenticated/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof AuthenticatedOwnerRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tenant': {
+      id: '/_authenticated/tenant'
+      path: '/tenant'
+      fullPath: '/tenant'
+      preLoaderRoute: typeof AuthenticatedTenantRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/kost/': {
+      id: '/kost/'
+      path: '/kost'
+      fullPath: '/kost/'
+      preLoaderRoute: typeof KostIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kost/$id': {
+      id: '/kost/$id'
+      path: '/kost/$id'
+      fullPath: '/kost/$id'
+      preLoaderRoute: typeof KostIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/dashboard': {
+      id: '/_authenticated/admin/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AuthenticatedAdminDashboardRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/notifications': {
+      id: '/_authenticated/admin/notifications'
+      path: '/notifications'
+      fullPath: '/admin/notifications'
+      preLoaderRoute: typeof AuthenticatedAdminNotificationsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/assistant/dashboard': {
+      id: '/_authenticated/assistant/dashboard'
+      path: '/dashboard'
+      fullPath: '/assistant/dashboard'
+      preLoaderRoute: typeof AuthenticatedAssistantDashboardRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
+    '/_authenticated/assistant/notifications': {
+      id: '/_authenticated/assistant/notifications'
+      path: '/notifications'
+      fullPath: '/assistant/notifications'
+      preLoaderRoute: typeof AuthenticatedAssistantNotificationsRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
+    '/_authenticated/helper/dashboard': {
+      id: '/_authenticated/helper/dashboard'
+      path: '/dashboard'
+      fullPath: '/helper/dashboard'
+      preLoaderRoute: typeof AuthenticatedHelperDashboardRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
+    }
+    '/_authenticated/helper/notifications': {
+      id: '/_authenticated/helper/notifications'
+      path: '/notifications'
+      fullPath: '/helper/notifications'
+      preLoaderRoute: typeof AuthenticatedHelperNotificationsRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
+    }
+    '/_authenticated/owner/dashboard': {
+      id: '/_authenticated/owner/dashboard'
+      path: '/dashboard'
+      fullPath: '/owner/dashboard'
+      preLoaderRoute: typeof AuthenticatedOwnerDashboardRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/owner/notifications': {
+      id: '/_authenticated/owner/notifications'
+      path: '/notifications'
+      fullPath: '/owner/notifications'
+      preLoaderRoute: typeof AuthenticatedOwnerNotificationsRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/tenant/dashboard': {
+      id: '/_authenticated/tenant/dashboard'
+      path: '/dashboard'
+      fullPath: '/tenant/dashboard'
+      preLoaderRoute: typeof AuthenticatedTenantDashboardRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
+    '/_authenticated/tenant/notifications': {
+      id: '/_authenticated/tenant/notifications'
+      path: '/notifications'
+      fullPath: '/tenant/notifications'
+      preLoaderRoute: typeof AuthenticatedTenantNotificationsRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
+  AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
+    AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
+interface AuthenticatedAssistantRouteRouteChildren {
+  AuthenticatedAssistantDashboardRoute: typeof AuthenticatedAssistantDashboardRoute
+  AuthenticatedAssistantNotificationsRoute: typeof AuthenticatedAssistantNotificationsRoute
+}
+
+const AuthenticatedAssistantRouteRouteChildren: AuthenticatedAssistantRouteRouteChildren =
+  {
+    AuthenticatedAssistantDashboardRoute: AuthenticatedAssistantDashboardRoute,
+    AuthenticatedAssistantNotificationsRoute:
+      AuthenticatedAssistantNotificationsRoute,
+  }
+
+const AuthenticatedAssistantRouteRouteWithChildren =
+  AuthenticatedAssistantRouteRoute._addFileChildren(
+    AuthenticatedAssistantRouteRouteChildren,
+  )
+
+interface AuthenticatedHelperRouteRouteChildren {
+  AuthenticatedHelperDashboardRoute: typeof AuthenticatedHelperDashboardRoute
+  AuthenticatedHelperNotificationsRoute: typeof AuthenticatedHelperNotificationsRoute
+}
+
+const AuthenticatedHelperRouteRouteChildren: AuthenticatedHelperRouteRouteChildren =
+  {
+    AuthenticatedHelperDashboardRoute: AuthenticatedHelperDashboardRoute,
+    AuthenticatedHelperNotificationsRoute:
+      AuthenticatedHelperNotificationsRoute,
+  }
+
+const AuthenticatedHelperRouteRouteWithChildren =
+  AuthenticatedHelperRouteRoute._addFileChildren(
+    AuthenticatedHelperRouteRouteChildren,
+  )
+
+interface AuthenticatedOwnerRouteRouteChildren {
+  AuthenticatedOwnerDashboardRoute: typeof AuthenticatedOwnerDashboardRoute
+  AuthenticatedOwnerNotificationsRoute: typeof AuthenticatedOwnerNotificationsRoute
+}
+
+const AuthenticatedOwnerRouteRouteChildren: AuthenticatedOwnerRouteRouteChildren =
+  {
+    AuthenticatedOwnerDashboardRoute: AuthenticatedOwnerDashboardRoute,
+    AuthenticatedOwnerNotificationsRoute: AuthenticatedOwnerNotificationsRoute,
+  }
+
+const AuthenticatedOwnerRouteRouteWithChildren =
+  AuthenticatedOwnerRouteRoute._addFileChildren(
+    AuthenticatedOwnerRouteRouteChildren,
+  )
+
+interface AuthenticatedTenantRouteRouteChildren {
+  AuthenticatedTenantDashboardRoute: typeof AuthenticatedTenantDashboardRoute
+  AuthenticatedTenantNotificationsRoute: typeof AuthenticatedTenantNotificationsRoute
+}
+
+const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildren =
+  {
+    AuthenticatedTenantDashboardRoute: AuthenticatedTenantDashboardRoute,
+    AuthenticatedTenantNotificationsRoute:
+      AuthenticatedTenantNotificationsRoute,
+  }
+
+const AuthenticatedTenantRouteRouteWithChildren =
+  AuthenticatedTenantRouteRoute._addFileChildren(
+    AuthenticatedTenantRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
+  AuthenticatedAssistantRouteRoute: typeof AuthenticatedAssistantRouteRouteWithChildren
+  AuthenticatedHelperRouteRoute: typeof AuthenticatedHelperRouteRouteWithChildren
+  AuthenticatedOwnerRouteRoute: typeof AuthenticatedOwnerRouteRouteWithChildren
+  AuthenticatedTenantRouteRoute: typeof AuthenticatedTenantRouteRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
+  AuthenticatedAssistantRouteRoute:
+    AuthenticatedAssistantRouteRouteWithChildren,
+  AuthenticatedHelperRouteRoute: AuthenticatedHelperRouteRouteWithChildren,
+  AuthenticatedOwnerRouteRoute: AuthenticatedOwnerRouteRouteWithChildren,
+  AuthenticatedTenantRouteRoute: AuthenticatedTenantRouteRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  KontakRoute: KontakRoute,
+  LoginRoute: LoginRoute,
+  TentangRoute: TentangRoute,
+  KostIdRoute: KostIdRoute,
+  KostIndexRoute: KostIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

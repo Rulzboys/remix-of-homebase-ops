@@ -1,0 +1,9 @@
+REVOKE EXECUTE ON FUNCTION public.handle_new_user() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_visit_created() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_visit_completed() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_visit_doc() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_cleaning_created() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_cleaning_completed() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_tenant_created() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_invoice_created() FROM anon, public, authenticated;
+REVOKE EXECUTE ON FUNCTION public.trg_payment_created() FROM anon, public, authenticated;
