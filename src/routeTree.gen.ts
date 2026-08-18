@@ -10,8 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as TentangRouteImport } from './routes/tentang'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
+import { Route as AuthenticatedAssistantRouteRouteImport } from './routes/_authenticated/assistant/route'
+import { Route as AuthenticatedHelperRouteRouteImport } from './routes/_authenticated/helper/route'
+import { Route as AuthenticatedOwnerRouteRouteImport } from './routes/_authenticated/owner/route'
+import { Route as AuthenticatedTenantRouteRouteImport } from './routes/_authenticated/tenant/route'
 import { Route as KostIndexRouteImport } from './routes/kost/index'
 import { Route as KostIdRouteImport } from './routes/kost/$id'
 
@@ -20,9 +27,18 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KontakRoute = KontakRouteImport.update({
   id: '/kontak',
   path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TentangRoute = TentangRouteImport.update({
@@ -30,6 +46,34 @@ const TentangRoute = TentangRouteImport.update({
   path: '/tentang',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAssistantRouteRoute =
+  AuthenticatedAssistantRouteRouteImport.update({
+    id: '/assistant',
+    path: '/assistant',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedHelperRouteRoute =
+  AuthenticatedHelperRouteRouteImport.update({
+    id: '/helper',
+    path: '/helper',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOwnerRouteRoute = AuthenticatedOwnerRouteRouteImport.update({
+  id: '/owner',
+  path: '/owner',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTenantRouteRoute =
+  AuthenticatedTenantRouteRouteImport.update({
+    id: '/tenant',
+    path: '/tenant',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const KostIndexRoute = KostIndexRouteImport.update({
   id: '/kost/',
   path: '/kost/',
@@ -44,36 +88,92 @@ const KostIdRoute = KostIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kontak': typeof KontakRoute
+  '/login': typeof LoginRoute
   '/tentang': typeof TentangRoute
+  '/admin': typeof AuthenticatedAdminRouteRoute
+  '/assistant': typeof AuthenticatedAssistantRouteRoute
+  '/helper': typeof AuthenticatedHelperRouteRoute
+  '/owner': typeof AuthenticatedOwnerRouteRoute
+  '/tenant': typeof AuthenticatedTenantRouteRoute
   '/kost/$id': typeof KostIdRoute
   '/kost/': typeof KostIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kontak': typeof KontakRoute
+  '/login': typeof LoginRoute
   '/tentang': typeof TentangRoute
+  '/admin': typeof AuthenticatedAdminRouteRoute
+  '/assistant': typeof AuthenticatedAssistantRouteRoute
+  '/helper': typeof AuthenticatedHelperRouteRoute
+  '/owner': typeof AuthenticatedOwnerRouteRoute
+  '/tenant': typeof AuthenticatedTenantRouteRoute
   '/kost/$id': typeof KostIdRoute
   '/kost': typeof KostIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/kontak': typeof KontakRoute
+  '/login': typeof LoginRoute
   '/tentang': typeof TentangRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRoute
+  '/_authenticated/assistant': typeof AuthenticatedAssistantRouteRoute
+  '/_authenticated/helper': typeof AuthenticatedHelperRouteRoute
+  '/_authenticated/owner': typeof AuthenticatedOwnerRouteRoute
+  '/_authenticated/tenant': typeof AuthenticatedTenantRouteRoute
   '/kost/$id': typeof KostIdRoute
   '/kost/': typeof KostIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontak' | '/tentang' | '/kost/$id' | '/kost/'
+  fullPaths:
+    | '/'
+    | '/kontak'
+    | '/login'
+    | '/tentang'
+    | '/admin'
+    | '/assistant'
+    | '/helper'
+    | '/owner'
+    | '/tenant'
+    | '/kost/$id'
+    | '/kost/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontak' | '/tentang' | '/kost/$id' | '/kost'
-  id: '__root__' | '/' | '/kontak' | '/tentang' | '/kost/$id' | '/kost/'
+  to:
+    | '/'
+    | '/kontak'
+    | '/login'
+    | '/tentang'
+    | '/admin'
+    | '/assistant'
+    | '/helper'
+    | '/owner'
+    | '/tenant'
+    | '/kost/$id'
+    | '/kost'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/kontak'
+    | '/login'
+    | '/tentang'
+    | '/_authenticated/admin'
+    | '/_authenticated/assistant'
+    | '/_authenticated/helper'
+    | '/_authenticated/owner'
+    | '/_authenticated/tenant'
+    | '/kost/$id'
+    | '/kost/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   KontakRoute: typeof KontakRoute
+  LoginRoute: typeof LoginRoute
   TentangRoute: typeof TentangRoute
   KostIdRoute: typeof KostIdRoute
   KostIndexRoute: typeof KostIndexRoute
@@ -88,11 +188,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kontak': {
       id: '/kontak'
       path: '/kontak'
       fullPath: '/kontak'
       preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tentang': {
@@ -101,6 +215,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/tentang'
       preLoaderRoute: typeof TentangRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/assistant': {
+      id: '/_authenticated/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AuthenticatedAssistantRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/helper': {
+      id: '/_authenticated/helper'
+      path: '/helper'
+      fullPath: '/helper'
+      preLoaderRoute: typeof AuthenticatedHelperRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/owner': {
+      id: '/_authenticated/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof AuthenticatedOwnerRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tenant': {
+      id: '/_authenticated/tenant'
+      path: '/tenant'
+      fullPath: '/tenant'
+      preLoaderRoute: typeof AuthenticatedTenantRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/kost/': {
       id: '/kost/'
@@ -119,9 +268,30 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRoute
+  AuthenticatedAssistantRouteRoute: typeof AuthenticatedAssistantRouteRoute
+  AuthenticatedHelperRouteRoute: typeof AuthenticatedHelperRouteRoute
+  AuthenticatedOwnerRouteRoute: typeof AuthenticatedOwnerRouteRoute
+  AuthenticatedTenantRouteRoute: typeof AuthenticatedTenantRouteRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRoute,
+  AuthenticatedAssistantRouteRoute: AuthenticatedAssistantRouteRoute,
+  AuthenticatedHelperRouteRoute: AuthenticatedHelperRouteRoute,
+  AuthenticatedOwnerRouteRoute: AuthenticatedOwnerRouteRoute,
+  AuthenticatedTenantRouteRoute: AuthenticatedTenantRouteRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   KontakRoute: KontakRoute,
+  LoginRoute: LoginRoute,
   TentangRoute: TentangRoute,
   KostIdRoute: KostIdRoute,
   KostIndexRoute: KostIndexRoute,
