@@ -204,3 +204,22 @@ export function myTenantQuery(userId: string | undefined) {
     enabled: Boolean(userId),
   };
 }
+
+/* ---------- owners (profiles with role = owner) ---------- */
+
+export function ownersQuery() {
+  return {
+    queryKey: ["owners"],
+    queryFn: async () => {
+      const roles = await run(
+        supabase.from("user_roles").select("user_id").eq("role", "owner"),
+      );
+      const ids = (roles as Row[]).map((r) => r["user_id"] as string);
+      if (ids.length === 0) return [] as Row[];
+      const profiles = await run(
+        supabase.from("profiles").select("id, full_name, email").in("id", ids).order("full_name"),
+      );
+      return profiles as Row[];
+    },
+  };
+}
