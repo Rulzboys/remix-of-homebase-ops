@@ -25,11 +25,14 @@ import { Route as AuthenticatedAdminCleaningRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin/content'
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin/dashboard'
 import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin/notifications'
+import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authenticated/admin/payments'
 import { Route as AuthenticatedAdminPropertiesRouteImport } from './routes/_authenticated/admin/properties'
 import { Route as AuthenticatedAdminProspectsRouteImport } from './routes/_authenticated/admin/prospects'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin/reports'
 import { Route as AuthenticatedAdminRoomsRouteImport } from './routes/_authenticated/admin/rooms'
+import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin/settings'
 import { Route as AuthenticatedAdminTenantsRouteImport } from './routes/_authenticated/admin/tenants'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
 import { Route as AuthenticatedAdminVisitsRouteImport } from './routes/_authenticated/admin/visits'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
@@ -126,6 +129,12 @@ const AuthenticatedAdminNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminPaymentsRoute =
+  AuthenticatedAdminPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminPropertiesRoute =
   AuthenticatedAdminPropertiesRouteImport.update({
     id: '/properties',
@@ -149,12 +158,23 @@ const AuthenticatedAdminRoomsRoute = AuthenticatedAdminRoomsRouteImport.update({
   path: '/rooms',
   getParentRoute: () => AuthenticatedAdminRouteRoute,
 } as any)
+const AuthenticatedAdminSettingsRoute =
+  AuthenticatedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminTenantsRoute =
   AuthenticatedAdminTenantsRouteImport.update({
     id: '/tenants',
     path: '/tenants',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
 const AuthenticatedAdminVisitsRoute =
   AuthenticatedAdminVisitsRouteImport.update({
     id: '/visits',
@@ -226,11 +246,14 @@ export interface FileRoutesByFullPath {
   '/admin/content': typeof AuthenticatedAdminContentRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
   '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/admin/prospects': typeof AuthenticatedAdminProspectsRoute
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/admin/rooms': typeof AuthenticatedAdminRoomsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
@@ -257,11 +280,14 @@ export interface FileRoutesByTo {
   '/admin/content': typeof AuthenticatedAdminContentRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
   '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/admin/prospects': typeof AuthenticatedAdminProspectsRoute
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/admin/rooms': typeof AuthenticatedAdminRoomsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
@@ -290,11 +316,14 @@ export interface FileRoutesById {
   '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/_authenticated/admin/payments': typeof AuthenticatedAdminPaymentsRoute
   '/_authenticated/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/_authenticated/admin/prospects': typeof AuthenticatedAdminProspectsRoute
   '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/_authenticated/admin/rooms': typeof AuthenticatedAdminRoomsRoute
+  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/_authenticated/admin/tenants': typeof AuthenticatedAdminTenantsRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
@@ -323,11 +352,14 @@ export interface FileRouteTypes {
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/notifications'
+    | '/admin/payments'
     | '/admin/properties'
     | '/admin/prospects'
     | '/admin/reports'
     | '/admin/rooms'
+    | '/admin/settings'
     | '/admin/tenants'
+    | '/admin/users'
     | '/admin/visits'
     | '/assistant/dashboard'
     | '/assistant/notifications'
@@ -354,11 +386,14 @@ export interface FileRouteTypes {
     | '/admin/content'
     | '/admin/dashboard'
     | '/admin/notifications'
+    | '/admin/payments'
     | '/admin/properties'
     | '/admin/prospects'
     | '/admin/reports'
     | '/admin/rooms'
+    | '/admin/settings'
     | '/admin/tenants'
+    | '/admin/users'
     | '/admin/visits'
     | '/assistant/dashboard'
     | '/assistant/notifications'
@@ -386,11 +421,14 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/content'
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/notifications'
+    | '/_authenticated/admin/payments'
     | '/_authenticated/admin/properties'
     | '/_authenticated/admin/prospects'
     | '/_authenticated/admin/reports'
     | '/_authenticated/admin/rooms'
+    | '/_authenticated/admin/settings'
     | '/_authenticated/admin/tenants'
+    | '/_authenticated/admin/users'
     | '/_authenticated/admin/visits'
     | '/_authenticated/assistant/dashboard'
     | '/_authenticated/assistant/notifications'
@@ -526,6 +564,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminNotificationsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/payments': {
+      id: '/_authenticated/admin/payments'
+      path: '/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AuthenticatedAdminPaymentsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/properties': {
       id: '/_authenticated/admin/properties'
       path: '/properties'
@@ -554,11 +599,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRoomsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/settings': {
+      id: '/_authenticated/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/tenants': {
       id: '/_authenticated/admin/tenants'
       path: '/tenants'
       fullPath: '/admin/tenants'
       preLoaderRoute: typeof AuthenticatedAdminTenantsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
     '/_authenticated/admin/visits': {
@@ -632,11 +691,14 @@ interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
   AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
   AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
+  AuthenticatedAdminPaymentsRoute: typeof AuthenticatedAdminPaymentsRoute
   AuthenticatedAdminPropertiesRoute: typeof AuthenticatedAdminPropertiesRoute
   AuthenticatedAdminProspectsRoute: typeof AuthenticatedAdminProspectsRoute
   AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
   AuthenticatedAdminRoomsRoute: typeof AuthenticatedAdminRoomsRoute
+  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
   AuthenticatedAdminTenantsRoute: typeof AuthenticatedAdminTenantsRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
   AuthenticatedAdminVisitsRoute: typeof AuthenticatedAdminVisitsRoute
 }
 
@@ -646,11 +708,14 @@ const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren
     AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
     AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
     AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
+    AuthenticatedAdminPaymentsRoute: AuthenticatedAdminPaymentsRoute,
     AuthenticatedAdminPropertiesRoute: AuthenticatedAdminPropertiesRoute,
     AuthenticatedAdminProspectsRoute: AuthenticatedAdminProspectsRoute,
     AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
     AuthenticatedAdminRoomsRoute: AuthenticatedAdminRoomsRoute,
+    AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
     AuthenticatedAdminTenantsRoute: AuthenticatedAdminTenantsRoute,
+    AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
     AuthenticatedAdminVisitsRoute: AuthenticatedAdminVisitsRoute,
   }
 
