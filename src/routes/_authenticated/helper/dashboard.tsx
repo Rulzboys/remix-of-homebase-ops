@@ -28,7 +28,7 @@ function HelperDashboard() {
       cell: (r) => <span className="font-medium">{r["property"]?.name ?? "—"}</span>,
     },
     { key: "room", header: "Kamar", cell: (r) => r["room"]?.room_number ?? "Area umum" },
-    { key: "date", header: "Jadwal", cell: (r) => formatDateShort(r["scheduled_date"]) },
+    { key: "date", header: "Jadwal", cell: (r) => formatDateShort(r["cleaning_date"]) },
     {
       key: "status",
       header: "Status",
@@ -48,7 +48,7 @@ function HelperDashboard() {
       <StatsRow isPending={cleaning.isPending} count={3}>
         <StatCard
           label="Tugas Hari Ini"
-          value={rows.filter((c) => c["scheduled_date"] === today).length}
+          value={rows.filter((c) => c["cleaning_date"] === today).length}
           icon={Sparkles}
         />
         <StatCard
