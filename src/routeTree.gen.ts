@@ -38,8 +38,13 @@ import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_a
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
+import { Route as AuthenticatedOwnerCleaningRouteImport } from './routes/_authenticated/owner/cleaning'
 import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
 import { Route as AuthenticatedOwnerNotificationsRouteImport } from './routes/_authenticated/owner/notifications'
+import { Route as AuthenticatedOwnerPaymentsRouteImport } from './routes/_authenticated/owner/payments'
+import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_authenticated/owner/properties'
+import { Route as AuthenticatedOwnerReportsRouteImport } from './routes/_authenticated/owner/reports'
+import { Route as AuthenticatedOwnerTenantsRouteImport } from './routes/_authenticated/owner/tenants'
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
 import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
 
@@ -205,6 +210,12 @@ const AuthenticatedHelperNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedHelperRouteRoute,
   } as any)
+const AuthenticatedOwnerCleaningRoute =
+  AuthenticatedOwnerCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
 const AuthenticatedOwnerDashboardRoute =
   AuthenticatedOwnerDashboardRouteImport.update({
     id: '/dashboard',
@@ -215,6 +226,30 @@ const AuthenticatedOwnerNotificationsRoute =
   AuthenticatedOwnerNotificationsRouteImport.update({
     id: '/notifications',
     path: '/notifications',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedOwnerPaymentsRoute =
+  AuthenticatedOwnerPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedOwnerPropertiesRoute =
+  AuthenticatedOwnerPropertiesRouteImport.update({
+    id: '/properties',
+    path: '/properties',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedOwnerReportsRoute =
+  AuthenticatedOwnerReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedOwnerTenantsRoute =
+  AuthenticatedOwnerTenantsRouteImport.update({
+    id: '/tenants',
+    path: '/tenants',
     getParentRoute: () => AuthenticatedOwnerRouteRoute,
   } as any)
 const AuthenticatedTenantDashboardRoute =
@@ -259,8 +294,13 @@ export interface FileRoutesByFullPath {
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/owner/payments': typeof AuthenticatedOwnerPaymentsRoute
+  '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
+  '/owner/reports': typeof AuthenticatedOwnerReportsRoute
+  '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
@@ -293,8 +333,13 @@ export interface FileRoutesByTo {
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/owner/payments': typeof AuthenticatedOwnerPaymentsRoute
+  '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
+  '/owner/reports': typeof AuthenticatedOwnerReportsRoute
+  '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
@@ -329,8 +374,13 @@ export interface FileRoutesById {
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/_authenticated/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/_authenticated/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/_authenticated/owner/payments': typeof AuthenticatedOwnerPaymentsRoute
+  '/_authenticated/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
+  '/_authenticated/owner/reports': typeof AuthenticatedOwnerReportsRoute
+  '/_authenticated/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
@@ -365,8 +415,13 @@ export interface FileRouteTypes {
     | '/assistant/notifications'
     | '/helper/dashboard'
     | '/helper/notifications'
+    | '/owner/cleaning'
     | '/owner/dashboard'
     | '/owner/notifications'
+    | '/owner/payments'
+    | '/owner/properties'
+    | '/owner/reports'
+    | '/owner/tenants'
     | '/tenant/dashboard'
     | '/tenant/notifications'
   fileRoutesByTo: FileRoutesByTo
@@ -399,8 +454,13 @@ export interface FileRouteTypes {
     | '/assistant/notifications'
     | '/helper/dashboard'
     | '/helper/notifications'
+    | '/owner/cleaning'
     | '/owner/dashboard'
     | '/owner/notifications'
+    | '/owner/payments'
+    | '/owner/properties'
+    | '/owner/reports'
+    | '/owner/tenants'
     | '/tenant/dashboard'
     | '/tenant/notifications'
   id:
@@ -434,8 +494,13 @@ export interface FileRouteTypes {
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/helper/dashboard'
     | '/_authenticated/helper/notifications'
+    | '/_authenticated/owner/cleaning'
     | '/_authenticated/owner/dashboard'
     | '/_authenticated/owner/notifications'
+    | '/_authenticated/owner/payments'
+    | '/_authenticated/owner/properties'
+    | '/_authenticated/owner/reports'
+    | '/_authenticated/owner/tenants'
     | '/_authenticated/tenant/dashboard'
     | '/_authenticated/tenant/notifications'
   fileRoutesById: FileRoutesById
@@ -655,6 +720,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHelperNotificationsRouteImport
       parentRoute: typeof AuthenticatedHelperRouteRoute
     }
+    '/_authenticated/owner/cleaning': {
+      id: '/_authenticated/owner/cleaning'
+      path: '/cleaning'
+      fullPath: '/owner/cleaning'
+      preLoaderRoute: typeof AuthenticatedOwnerCleaningRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
     '/_authenticated/owner/dashboard': {
       id: '/_authenticated/owner/dashboard'
       path: '/dashboard'
@@ -667,6 +739,34 @@ declare module '@tanstack/react-router' {
       path: '/notifications'
       fullPath: '/owner/notifications'
       preLoaderRoute: typeof AuthenticatedOwnerNotificationsRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/owner/payments': {
+      id: '/_authenticated/owner/payments'
+      path: '/payments'
+      fullPath: '/owner/payments'
+      preLoaderRoute: typeof AuthenticatedOwnerPaymentsRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/owner/properties': {
+      id: '/_authenticated/owner/properties'
+      path: '/properties'
+      fullPath: '/owner/properties'
+      preLoaderRoute: typeof AuthenticatedOwnerPropertiesRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/owner/reports': {
+      id: '/_authenticated/owner/reports'
+      path: '/reports'
+      fullPath: '/owner/reports'
+      preLoaderRoute: typeof AuthenticatedOwnerReportsRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/owner/tenants': {
+      id: '/_authenticated/owner/tenants'
+      path: '/tenants'
+      fullPath: '/owner/tenants'
+      preLoaderRoute: typeof AuthenticatedOwnerTenantsRouteImport
       parentRoute: typeof AuthenticatedOwnerRouteRoute
     }
     '/_authenticated/tenant/dashboard': {
@@ -759,14 +859,24 @@ const AuthenticatedHelperRouteRouteWithChildren =
   )
 
 interface AuthenticatedOwnerRouteRouteChildren {
+  AuthenticatedOwnerCleaningRoute: typeof AuthenticatedOwnerCleaningRoute
   AuthenticatedOwnerDashboardRoute: typeof AuthenticatedOwnerDashboardRoute
   AuthenticatedOwnerNotificationsRoute: typeof AuthenticatedOwnerNotificationsRoute
+  AuthenticatedOwnerPaymentsRoute: typeof AuthenticatedOwnerPaymentsRoute
+  AuthenticatedOwnerPropertiesRoute: typeof AuthenticatedOwnerPropertiesRoute
+  AuthenticatedOwnerReportsRoute: typeof AuthenticatedOwnerReportsRoute
+  AuthenticatedOwnerTenantsRoute: typeof AuthenticatedOwnerTenantsRoute
 }
 
 const AuthenticatedOwnerRouteRouteChildren: AuthenticatedOwnerRouteRouteChildren =
   {
+    AuthenticatedOwnerCleaningRoute: AuthenticatedOwnerCleaningRoute,
     AuthenticatedOwnerDashboardRoute: AuthenticatedOwnerDashboardRoute,
     AuthenticatedOwnerNotificationsRoute: AuthenticatedOwnerNotificationsRoute,
+    AuthenticatedOwnerPaymentsRoute: AuthenticatedOwnerPaymentsRoute,
+    AuthenticatedOwnerPropertiesRoute: AuthenticatedOwnerPropertiesRoute,
+    AuthenticatedOwnerReportsRoute: AuthenticatedOwnerReportsRoute,
+    AuthenticatedOwnerTenantsRoute: AuthenticatedOwnerTenantsRoute,
   }
 
 const AuthenticatedOwnerRouteRouteWithChildren =
