@@ -56,7 +56,9 @@ function TenantDashboard() {
         <StatCard
           label="Kamar"
           value={record?.["room"]?.room_number ?? "—"}
-          hint={record?.["room"]?.price ? `${formatRupiah(record["room"].price)} / bulan` : undefined}
+          hint={
+            record?.["room"]?.price ? `${formatRupiah(record["room"].price)} / bulan` : "Belum ada"
+          }
           icon={DoorClosed}
         />
         <StatCard label="Tagihan Belum Lunas" value={unpaid.length} icon={CreditCard} />

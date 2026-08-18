@@ -23,9 +23,13 @@ import { Route as KostIndexRouteImport } from './routes/kost/index'
 import { Route as KostIdRouteImport } from './routes/kost/$id'
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin/dashboard'
 import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin/notifications'
+import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
+import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
+import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
 import { Route as AuthenticatedOwnerNotificationsRouteImport } from './routes/_authenticated/owner/notifications'
+import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
 import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
 
 const IndexRoute = IndexRouteImport.update({
@@ -102,11 +106,23 @@ const AuthenticatedAdminNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAssistantDashboardRoute =
+  AuthenticatedAssistantDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
 const AuthenticatedAssistantNotificationsRoute =
   AuthenticatedAssistantNotificationsRouteImport.update({
     id: '/notifications',
     path: '/notifications',
     getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
+const AuthenticatedHelperDashboardRoute =
+  AuthenticatedHelperDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
   } as any)
 const AuthenticatedHelperNotificationsRoute =
   AuthenticatedHelperNotificationsRouteImport.update({
@@ -114,11 +130,23 @@ const AuthenticatedHelperNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedHelperRouteRoute,
   } as any)
+const AuthenticatedOwnerDashboardRoute =
+  AuthenticatedOwnerDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
 const AuthenticatedOwnerNotificationsRoute =
   AuthenticatedOwnerNotificationsRouteImport.update({
     id: '/notifications',
     path: '/notifications',
     getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
+const AuthenticatedTenantDashboardRoute =
+  AuthenticatedTenantDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
   } as any)
 const AuthenticatedTenantNotificationsRoute =
   AuthenticatedTenantNotificationsRouteImport.update({
@@ -141,9 +169,13 @@ export interface FileRoutesByFullPath {
   '/kost/': typeof KostIndexRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRoutesByTo {
@@ -160,9 +192,13 @@ export interface FileRoutesByTo {
   '/kost': typeof KostIndexRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRoutesById {
@@ -181,9 +217,13 @@ export interface FileRoutesById {
   '/kost/': typeof KostIndexRoute
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/_authenticated/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRouteTypes {
@@ -202,9 +242,13 @@ export interface FileRouteTypes {
     | '/kost/'
     | '/admin/dashboard'
     | '/admin/notifications'
+    | '/assistant/dashboard'
     | '/assistant/notifications'
+    | '/helper/dashboard'
     | '/helper/notifications'
+    | '/owner/dashboard'
     | '/owner/notifications'
+    | '/tenant/dashboard'
     | '/tenant/notifications'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -221,9 +265,13 @@ export interface FileRouteTypes {
     | '/kost'
     | '/admin/dashboard'
     | '/admin/notifications'
+    | '/assistant/dashboard'
     | '/assistant/notifications'
+    | '/helper/dashboard'
     | '/helper/notifications'
+    | '/owner/dashboard'
     | '/owner/notifications'
+    | '/tenant/dashboard'
     | '/tenant/notifications'
   id:
     | '__root__'
@@ -241,9 +289,13 @@ export interface FileRouteTypes {
     | '/kost/'
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/notifications'
+    | '/_authenticated/assistant/dashboard'
     | '/_authenticated/assistant/notifications'
+    | '/_authenticated/helper/dashboard'
     | '/_authenticated/helper/notifications'
+    | '/_authenticated/owner/dashboard'
     | '/_authenticated/owner/notifications'
+    | '/_authenticated/tenant/dashboard'
     | '/_authenticated/tenant/notifications'
   fileRoutesById: FileRoutesById
 }
@@ -357,12 +409,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminNotificationsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/assistant/dashboard': {
+      id: '/_authenticated/assistant/dashboard'
+      path: '/dashboard'
+      fullPath: '/assistant/dashboard'
+      preLoaderRoute: typeof AuthenticatedAssistantDashboardRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
     '/_authenticated/assistant/notifications': {
       id: '/_authenticated/assistant/notifications'
       path: '/notifications'
       fullPath: '/assistant/notifications'
       preLoaderRoute: typeof AuthenticatedAssistantNotificationsRouteImport
       parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
+    '/_authenticated/helper/dashboard': {
+      id: '/_authenticated/helper/dashboard'
+      path: '/dashboard'
+      fullPath: '/helper/dashboard'
+      preLoaderRoute: typeof AuthenticatedHelperDashboardRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
     }
     '/_authenticated/helper/notifications': {
       id: '/_authenticated/helper/notifications'
@@ -371,12 +437,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHelperNotificationsRouteImport
       parentRoute: typeof AuthenticatedHelperRouteRoute
     }
+    '/_authenticated/owner/dashboard': {
+      id: '/_authenticated/owner/dashboard'
+      path: '/dashboard'
+      fullPath: '/owner/dashboard'
+      preLoaderRoute: typeof AuthenticatedOwnerDashboardRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
     '/_authenticated/owner/notifications': {
       id: '/_authenticated/owner/notifications'
       path: '/notifications'
       fullPath: '/owner/notifications'
       preLoaderRoute: typeof AuthenticatedOwnerNotificationsRouteImport
       parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
+    '/_authenticated/tenant/dashboard': {
+      id: '/_authenticated/tenant/dashboard'
+      path: '/dashboard'
+      fullPath: '/tenant/dashboard'
+      preLoaderRoute: typeof AuthenticatedTenantDashboardRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
     }
     '/_authenticated/tenant/notifications': {
       id: '/_authenticated/tenant/notifications'
@@ -405,11 +485,13 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedAssistantRouteRouteChildren {
+  AuthenticatedAssistantDashboardRoute: typeof AuthenticatedAssistantDashboardRoute
   AuthenticatedAssistantNotificationsRoute: typeof AuthenticatedAssistantNotificationsRoute
 }
 
 const AuthenticatedAssistantRouteRouteChildren: AuthenticatedAssistantRouteRouteChildren =
   {
+    AuthenticatedAssistantDashboardRoute: AuthenticatedAssistantDashboardRoute,
     AuthenticatedAssistantNotificationsRoute:
       AuthenticatedAssistantNotificationsRoute,
   }
@@ -420,11 +502,13 @@ const AuthenticatedAssistantRouteRouteWithChildren =
   )
 
 interface AuthenticatedHelperRouteRouteChildren {
+  AuthenticatedHelperDashboardRoute: typeof AuthenticatedHelperDashboardRoute
   AuthenticatedHelperNotificationsRoute: typeof AuthenticatedHelperNotificationsRoute
 }
 
 const AuthenticatedHelperRouteRouteChildren: AuthenticatedHelperRouteRouteChildren =
   {
+    AuthenticatedHelperDashboardRoute: AuthenticatedHelperDashboardRoute,
     AuthenticatedHelperNotificationsRoute:
       AuthenticatedHelperNotificationsRoute,
   }
@@ -435,11 +519,13 @@ const AuthenticatedHelperRouteRouteWithChildren =
   )
 
 interface AuthenticatedOwnerRouteRouteChildren {
+  AuthenticatedOwnerDashboardRoute: typeof AuthenticatedOwnerDashboardRoute
   AuthenticatedOwnerNotificationsRoute: typeof AuthenticatedOwnerNotificationsRoute
 }
 
 const AuthenticatedOwnerRouteRouteChildren: AuthenticatedOwnerRouteRouteChildren =
   {
+    AuthenticatedOwnerDashboardRoute: AuthenticatedOwnerDashboardRoute,
     AuthenticatedOwnerNotificationsRoute: AuthenticatedOwnerNotificationsRoute,
   }
 
@@ -449,11 +535,13 @@ const AuthenticatedOwnerRouteRouteWithChildren =
   )
 
 interface AuthenticatedTenantRouteRouteChildren {
+  AuthenticatedTenantDashboardRoute: typeof AuthenticatedTenantDashboardRoute
   AuthenticatedTenantNotificationsRoute: typeof AuthenticatedTenantNotificationsRoute
 }
 
 const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildren =
   {
+    AuthenticatedTenantDashboardRoute: AuthenticatedTenantDashboardRoute,
     AuthenticatedTenantNotificationsRoute:
       AuthenticatedTenantNotificationsRoute,
   }
