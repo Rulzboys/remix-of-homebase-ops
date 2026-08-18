@@ -23,6 +23,7 @@ import { Route as KostIndexRouteImport } from './routes/kost/index'
 import { Route as KostIdRouteImport } from './routes/kost/$id'
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin/dashboard'
 import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin/notifications'
+import { Route as AuthenticatedAdminPropertiesRouteImport } from './routes/_authenticated/admin/properties'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
@@ -106,6 +107,12 @@ const AuthenticatedAdminNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminPropertiesRoute =
+  AuthenticatedAdminPropertiesRouteImport.update({
+    id: '/properties',
+    path: '/properties',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAssistantDashboardRoute =
   AuthenticatedAssistantDashboardRouteImport.update({
     id: '/dashboard',
@@ -169,6 +176,7 @@ export interface FileRoutesByFullPath {
   '/kost/': typeof KostIndexRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -192,6 +200,7 @@ export interface FileRoutesByTo {
   '/kost': typeof KostIndexRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -217,6 +226,7 @@ export interface FileRoutesById {
   '/kost/': typeof KostIndexRoute
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/_authenticated/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/kost/'
     | '/admin/dashboard'
     | '/admin/notifications'
+    | '/admin/properties'
     | '/assistant/dashboard'
     | '/assistant/notifications'
     | '/helper/dashboard'
@@ -265,6 +276,7 @@ export interface FileRouteTypes {
     | '/kost'
     | '/admin/dashboard'
     | '/admin/notifications'
+    | '/admin/properties'
     | '/assistant/dashboard'
     | '/assistant/notifications'
     | '/helper/dashboard'
@@ -289,6 +301,7 @@ export interface FileRouteTypes {
     | '/kost/'
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/notifications'
+    | '/_authenticated/admin/properties'
     | '/_authenticated/assistant/dashboard'
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/helper/dashboard'
@@ -409,6 +422,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminNotificationsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/properties': {
+      id: '/_authenticated/admin/properties'
+      path: '/properties'
+      fullPath: '/admin/properties'
+      preLoaderRoute: typeof AuthenticatedAdminPropertiesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/assistant/dashboard': {
       id: '/_authenticated/assistant/dashboard'
       path: '/dashboard'
@@ -471,12 +491,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
   AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
+  AuthenticatedAdminPropertiesRoute: typeof AuthenticatedAdminPropertiesRoute
 }
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
     AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
     AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
+    AuthenticatedAdminPropertiesRoute: AuthenticatedAdminPropertiesRoute,
   }
 
 const AuthenticatedAdminRouteRouteWithChildren =
