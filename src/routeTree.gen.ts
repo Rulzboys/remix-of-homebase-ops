@@ -21,12 +21,16 @@ import { Route as AuthenticatedOwnerRouteRouteImport } from './routes/_authentic
 import { Route as AuthenticatedTenantRouteRouteImport } from './routes/_authenticated/tenant/route'
 import { Route as KostIndexRouteImport } from './routes/kost/index'
 import { Route as KostIdRouteImport } from './routes/kost/$id'
+import { Route as AuthenticatedAdminCleaningRouteImport } from './routes/_authenticated/admin/cleaning'
+import { Route as AuthenticatedAdminContentRouteImport } from './routes/_authenticated/admin/content'
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin/dashboard'
 import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin/notifications'
 import { Route as AuthenticatedAdminPropertiesRouteImport } from './routes/_authenticated/admin/properties'
 import { Route as AuthenticatedAdminProspectsRouteImport } from './routes/_authenticated/admin/prospects'
+import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin/reports'
 import { Route as AuthenticatedAdminRoomsRouteImport } from './routes/_authenticated/admin/rooms'
 import { Route as AuthenticatedAdminTenantsRouteImport } from './routes/_authenticated/admin/tenants'
+import { Route as AuthenticatedAdminVisitsRouteImport } from './routes/_authenticated/admin/visits'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
@@ -98,6 +102,18 @@ const KostIdRoute = KostIdRouteImport.update({
   path: '/kost/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminCleaningRoute =
+  AuthenticatedAdminCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminContentRoute =
+  AuthenticatedAdminContentRouteImport.update({
+    id: '/content',
+    path: '/content',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminDashboardRoute =
   AuthenticatedAdminDashboardRouteImport.update({
     id: '/dashboard',
@@ -122,6 +138,12 @@ const AuthenticatedAdminProspectsRoute =
     path: '/prospects',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminReportsRoute =
+  AuthenticatedAdminReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAdminRoomsRoute = AuthenticatedAdminRoomsRouteImport.update({
   id: '/rooms',
   path: '/rooms',
@@ -131,6 +153,12 @@ const AuthenticatedAdminTenantsRoute =
   AuthenticatedAdminTenantsRouteImport.update({
     id: '/tenants',
     path: '/tenants',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminVisitsRoute =
+  AuthenticatedAdminVisitsRouteImport.update({
+    id: '/visits',
+    path: '/visits',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
 const AuthenticatedAssistantDashboardRoute =
@@ -194,12 +222,16 @@ export interface FileRoutesByFullPath {
   '/tenant': typeof AuthenticatedTenantRouteRouteWithChildren
   '/kost/$id': typeof KostIdRoute
   '/kost/': typeof KostIndexRoute
+  '/admin/cleaning': typeof AuthenticatedAdminCleaningRoute
+  '/admin/content': typeof AuthenticatedAdminContentRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
   '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/admin/prospects': typeof AuthenticatedAdminProspectsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/admin/rooms': typeof AuthenticatedAdminRoomsRoute
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
+  '/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -221,12 +253,16 @@ export interface FileRoutesByTo {
   '/tenant': typeof AuthenticatedTenantRouteRouteWithChildren
   '/kost/$id': typeof KostIdRoute
   '/kost': typeof KostIndexRoute
+  '/admin/cleaning': typeof AuthenticatedAdminCleaningRoute
+  '/admin/content': typeof AuthenticatedAdminContentRoute
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
   '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/admin/prospects': typeof AuthenticatedAdminProspectsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/admin/rooms': typeof AuthenticatedAdminRoomsRoute
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
+  '/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -250,12 +286,16 @@ export interface FileRoutesById {
   '/_authenticated/tenant': typeof AuthenticatedTenantRouteRouteWithChildren
   '/kost/$id': typeof KostIdRoute
   '/kost/': typeof KostIndexRoute
+  '/_authenticated/admin/cleaning': typeof AuthenticatedAdminCleaningRoute
+  '/_authenticated/admin/content': typeof AuthenticatedAdminContentRoute
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
   '/_authenticated/admin/properties': typeof AuthenticatedAdminPropertiesRoute
   '/_authenticated/admin/prospects': typeof AuthenticatedAdminProspectsRoute
+  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/_authenticated/admin/rooms': typeof AuthenticatedAdminRoomsRoute
   '/_authenticated/admin/tenants': typeof AuthenticatedAdminTenantsRoute
+  '/_authenticated/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -279,12 +319,16 @@ export interface FileRouteTypes {
     | '/tenant'
     | '/kost/$id'
     | '/kost/'
+    | '/admin/cleaning'
+    | '/admin/content'
     | '/admin/dashboard'
     | '/admin/notifications'
     | '/admin/properties'
     | '/admin/prospects'
+    | '/admin/reports'
     | '/admin/rooms'
     | '/admin/tenants'
+    | '/admin/visits'
     | '/assistant/dashboard'
     | '/assistant/notifications'
     | '/helper/dashboard'
@@ -306,12 +350,16 @@ export interface FileRouteTypes {
     | '/tenant'
     | '/kost/$id'
     | '/kost'
+    | '/admin/cleaning'
+    | '/admin/content'
     | '/admin/dashboard'
     | '/admin/notifications'
     | '/admin/properties'
     | '/admin/prospects'
+    | '/admin/reports'
     | '/admin/rooms'
     | '/admin/tenants'
+    | '/admin/visits'
     | '/assistant/dashboard'
     | '/assistant/notifications'
     | '/helper/dashboard'
@@ -334,12 +382,16 @@ export interface FileRouteTypes {
     | '/_authenticated/tenant'
     | '/kost/$id'
     | '/kost/'
+    | '/_authenticated/admin/cleaning'
+    | '/_authenticated/admin/content'
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/notifications'
     | '/_authenticated/admin/properties'
     | '/_authenticated/admin/prospects'
+    | '/_authenticated/admin/reports'
     | '/_authenticated/admin/rooms'
     | '/_authenticated/admin/tenants'
+    | '/_authenticated/admin/visits'
     | '/_authenticated/assistant/dashboard'
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/helper/dashboard'
@@ -446,6 +498,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KostIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/cleaning': {
+      id: '/_authenticated/admin/cleaning'
+      path: '/cleaning'
+      fullPath: '/admin/cleaning'
+      preLoaderRoute: typeof AuthenticatedAdminCleaningRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/content': {
+      id: '/_authenticated/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AuthenticatedAdminContentRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/dashboard': {
       id: '/_authenticated/admin/dashboard'
       path: '/dashboard'
@@ -474,6 +540,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminProspectsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/reports': {
+      id: '/_authenticated/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/admin/rooms': {
       id: '/_authenticated/admin/rooms'
       path: '/rooms'
@@ -486,6 +559,13 @@ declare module '@tanstack/react-router' {
       path: '/tenants'
       fullPath: '/admin/tenants'
       preLoaderRoute: typeof AuthenticatedAdminTenantsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/visits': {
+      id: '/_authenticated/admin/visits'
+      path: '/visits'
+      fullPath: '/admin/visits'
+      preLoaderRoute: typeof AuthenticatedAdminVisitsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
     '/_authenticated/assistant/dashboard': {
@@ -548,22 +628,30 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminCleaningRoute: typeof AuthenticatedAdminCleaningRoute
+  AuthenticatedAdminContentRoute: typeof AuthenticatedAdminContentRoute
   AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
   AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
   AuthenticatedAdminPropertiesRoute: typeof AuthenticatedAdminPropertiesRoute
   AuthenticatedAdminProspectsRoute: typeof AuthenticatedAdminProspectsRoute
+  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
   AuthenticatedAdminRoomsRoute: typeof AuthenticatedAdminRoomsRoute
   AuthenticatedAdminTenantsRoute: typeof AuthenticatedAdminTenantsRoute
+  AuthenticatedAdminVisitsRoute: typeof AuthenticatedAdminVisitsRoute
 }
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
+    AuthenticatedAdminCleaningRoute: AuthenticatedAdminCleaningRoute,
+    AuthenticatedAdminContentRoute: AuthenticatedAdminContentRoute,
     AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
     AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
     AuthenticatedAdminPropertiesRoute: AuthenticatedAdminPropertiesRoute,
     AuthenticatedAdminProspectsRoute: AuthenticatedAdminProspectsRoute,
+    AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
     AuthenticatedAdminRoomsRoute: AuthenticatedAdminRoomsRoute,
     AuthenticatedAdminTenantsRoute: AuthenticatedAdminTenantsRoute,
+    AuthenticatedAdminVisitsRoute: AuthenticatedAdminVisitsRoute,
   }
 
 const AuthenticatedAdminRouteRouteWithChildren =
