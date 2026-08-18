@@ -128,7 +128,7 @@ function AdminRooms() {
     if (!form.property_id || !form.room_number.trim()) return;
     save.mutate(
       {
-        id: editing?.["id"] as string | undefined,
+        id: (editing?.["id"] as string) ?? null,
         values: {
           property_id: form.property_id,
           room_number: form.room_number.trim(),

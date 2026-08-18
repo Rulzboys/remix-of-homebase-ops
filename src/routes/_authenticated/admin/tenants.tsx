@@ -136,7 +136,7 @@ function AdminTenants() {
     if (!form.full_name.trim()) return;
     save.mutate(
       {
-        id: editing?.["id"] as string | undefined,
+        id: (editing?.["id"] as string) ?? null,
         values: {
           full_name: form.full_name.trim(),
           phone: form.phone.trim() || null,

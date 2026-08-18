@@ -24,6 +24,9 @@ import { Route as KostIdRouteImport } from './routes/kost/$id'
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin/dashboard'
 import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin/notifications'
 import { Route as AuthenticatedAdminPropertiesRouteImport } from './routes/_authenticated/admin/properties'
+import { Route as AuthenticatedAdminProspectsRouteImport } from './routes/_authenticated/admin/prospects'
+import { Route as AuthenticatedAdminRoomsRouteImport } from './routes/_authenticated/admin/rooms'
+import { Route as AuthenticatedAdminTenantsRouteImport } from './routes/_authenticated/admin/tenants'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
@@ -113,6 +116,23 @@ const AuthenticatedAdminPropertiesRoute =
     path: '/properties',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAdminProspectsRoute =
+  AuthenticatedAdminProspectsRouteImport.update({
+    id: '/prospects',
+    path: '/prospects',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminRoomsRoute = AuthenticatedAdminRoomsRouteImport.update({
+  id: '/rooms',
+  path: '/rooms',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
+const AuthenticatedAdminTenantsRoute =
+  AuthenticatedAdminTenantsRouteImport.update({
+    id: '/tenants',
+    path: '/tenants',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 const AuthenticatedAssistantDashboardRoute =
   AuthenticatedAssistantDashboardRouteImport.update({
     id: '/dashboard',
@@ -177,6 +197,9 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
   '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
+  '/admin/prospects': typeof AuthenticatedAdminProspectsRoute
+  '/admin/rooms': typeof AuthenticatedAdminRoomsRoute
+  '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -201,6 +224,9 @@ export interface FileRoutesByTo {
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
   '/admin/properties': typeof AuthenticatedAdminPropertiesRoute
+  '/admin/prospects': typeof AuthenticatedAdminProspectsRoute
+  '/admin/rooms': typeof AuthenticatedAdminRoomsRoute
+  '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -227,6 +253,9 @@ export interface FileRoutesById {
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
   '/_authenticated/admin/properties': typeof AuthenticatedAdminPropertiesRoute
+  '/_authenticated/admin/prospects': typeof AuthenticatedAdminProspectsRoute
+  '/_authenticated/admin/rooms': typeof AuthenticatedAdminRoomsRoute
+  '/_authenticated/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -253,6 +282,9 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/notifications'
     | '/admin/properties'
+    | '/admin/prospects'
+    | '/admin/rooms'
+    | '/admin/tenants'
     | '/assistant/dashboard'
     | '/assistant/notifications'
     | '/helper/dashboard'
@@ -277,6 +309,9 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/notifications'
     | '/admin/properties'
+    | '/admin/prospects'
+    | '/admin/rooms'
+    | '/admin/tenants'
     | '/assistant/dashboard'
     | '/assistant/notifications'
     | '/helper/dashboard'
@@ -302,6 +337,9 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/notifications'
     | '/_authenticated/admin/properties'
+    | '/_authenticated/admin/prospects'
+    | '/_authenticated/admin/rooms'
+    | '/_authenticated/admin/tenants'
     | '/_authenticated/assistant/dashboard'
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/helper/dashboard'
@@ -429,6 +467,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminPropertiesRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/prospects': {
+      id: '/_authenticated/admin/prospects'
+      path: '/prospects'
+      fullPath: '/admin/prospects'
+      preLoaderRoute: typeof AuthenticatedAdminProspectsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/rooms': {
+      id: '/_authenticated/admin/rooms'
+      path: '/rooms'
+      fullPath: '/admin/rooms'
+      preLoaderRoute: typeof AuthenticatedAdminRoomsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/tenants': {
+      id: '/_authenticated/admin/tenants'
+      path: '/tenants'
+      fullPath: '/admin/tenants'
+      preLoaderRoute: typeof AuthenticatedAdminTenantsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
     '/_authenticated/assistant/dashboard': {
       id: '/_authenticated/assistant/dashboard'
       path: '/dashboard'
@@ -492,6 +551,9 @@ interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
   AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
   AuthenticatedAdminPropertiesRoute: typeof AuthenticatedAdminPropertiesRoute
+  AuthenticatedAdminProspectsRoute: typeof AuthenticatedAdminProspectsRoute
+  AuthenticatedAdminRoomsRoute: typeof AuthenticatedAdminRoomsRoute
+  AuthenticatedAdminTenantsRoute: typeof AuthenticatedAdminTenantsRoute
 }
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
@@ -499,6 +561,9 @@ const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren
     AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
     AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
     AuthenticatedAdminPropertiesRoute: AuthenticatedAdminPropertiesRoute,
+    AuthenticatedAdminProspectsRoute: AuthenticatedAdminProspectsRoute,
+    AuthenticatedAdminRoomsRoute: AuthenticatedAdminRoomsRoute,
+    AuthenticatedAdminTenantsRoute: AuthenticatedAdminTenantsRoute,
   }
 
 const AuthenticatedAdminRouteRouteWithChildren =
