@@ -39,7 +39,7 @@ export const Route = createFileRoute("/_authenticated/admin/prospects")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: AdminProspects;
+  component: AdminProspects,
 });
 
 type FormState = {
