@@ -38,6 +38,7 @@ import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_a
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
+import { Route as AuthenticatedOwnerCleaningRouteImport } from './routes/_authenticated/owner/cleaning'
 import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
 import { Route as AuthenticatedOwnerNotificationsRouteImport } from './routes/_authenticated/owner/notifications'
 import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_authenticated/owner/properties'
@@ -207,6 +208,12 @@ const AuthenticatedHelperNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedHelperRouteRoute,
   } as any)
+const AuthenticatedOwnerCleaningRoute =
+  AuthenticatedOwnerCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
 const AuthenticatedOwnerDashboardRoute =
   AuthenticatedOwnerDashboardRouteImport.update({
     id: '/dashboard',
@@ -273,6 +280,7 @@ export interface FileRoutesByFullPath {
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
@@ -309,6 +317,7 @@ export interface FileRoutesByTo {
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
@@ -347,6 +356,7 @@ export interface FileRoutesById {
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
+  '/_authenticated/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/_authenticated/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
   '/_authenticated/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
@@ -385,6 +395,7 @@ export interface FileRouteTypes {
     | '/assistant/notifications'
     | '/helper/dashboard'
     | '/helper/notifications'
+    | '/owner/cleaning'
     | '/owner/dashboard'
     | '/owner/notifications'
     | '/owner/properties'
@@ -421,6 +432,7 @@ export interface FileRouteTypes {
     | '/assistant/notifications'
     | '/helper/dashboard'
     | '/helper/notifications'
+    | '/owner/cleaning'
     | '/owner/dashboard'
     | '/owner/notifications'
     | '/owner/properties'
@@ -458,6 +470,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/helper/dashboard'
     | '/_authenticated/helper/notifications'
+    | '/_authenticated/owner/cleaning'
     | '/_authenticated/owner/dashboard'
     | '/_authenticated/owner/notifications'
     | '/_authenticated/owner/properties'
@@ -681,6 +694,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHelperNotificationsRouteImport
       parentRoute: typeof AuthenticatedHelperRouteRoute
     }
+    '/_authenticated/owner/cleaning': {
+      id: '/_authenticated/owner/cleaning'
+      path: '/cleaning'
+      fullPath: '/owner/cleaning'
+      preLoaderRoute: typeof AuthenticatedOwnerCleaningRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
     '/_authenticated/owner/dashboard': {
       id: '/_authenticated/owner/dashboard'
       path: '/dashboard'
@@ -799,6 +819,7 @@ const AuthenticatedHelperRouteRouteWithChildren =
   )
 
 interface AuthenticatedOwnerRouteRouteChildren {
+  AuthenticatedOwnerCleaningRoute: typeof AuthenticatedOwnerCleaningRoute
   AuthenticatedOwnerDashboardRoute: typeof AuthenticatedOwnerDashboardRoute
   AuthenticatedOwnerNotificationsRoute: typeof AuthenticatedOwnerNotificationsRoute
   AuthenticatedOwnerPropertiesRoute: typeof AuthenticatedOwnerPropertiesRoute
@@ -807,6 +828,7 @@ interface AuthenticatedOwnerRouteRouteChildren {
 
 const AuthenticatedOwnerRouteRouteChildren: AuthenticatedOwnerRouteRouteChildren =
   {
+    AuthenticatedOwnerCleaningRoute: AuthenticatedOwnerCleaningRoute,
     AuthenticatedOwnerDashboardRoute: AuthenticatedOwnerDashboardRoute,
     AuthenticatedOwnerNotificationsRoute: AuthenticatedOwnerNotificationsRoute,
     AuthenticatedOwnerPropertiesRoute: AuthenticatedOwnerPropertiesRoute,
