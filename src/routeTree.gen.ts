@@ -40,6 +40,7 @@ import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_auth
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
 import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
 import { Route as AuthenticatedOwnerNotificationsRouteImport } from './routes/_authenticated/owner/notifications'
+import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_authenticated/owner/properties'
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
 import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
 
@@ -217,6 +218,12 @@ const AuthenticatedOwnerNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedOwnerRouteRoute,
   } as any)
+const AuthenticatedOwnerPropertiesRoute =
+  AuthenticatedOwnerPropertiesRouteImport.update({
+    id: '/properties',
+    path: '/properties',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
 const AuthenticatedTenantDashboardRoute =
   AuthenticatedTenantDashboardRouteImport.update({
     id: '/dashboard',
@@ -261,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
@@ -295,6 +303,7 @@ export interface FileRoutesByTo {
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
@@ -331,6 +340,7 @@ export interface FileRoutesById {
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/_authenticated/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/_authenticated/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
@@ -367,6 +377,7 @@ export interface FileRouteTypes {
     | '/helper/notifications'
     | '/owner/dashboard'
     | '/owner/notifications'
+    | '/owner/properties'
     | '/tenant/dashboard'
     | '/tenant/notifications'
   fileRoutesByTo: FileRoutesByTo
@@ -401,6 +412,7 @@ export interface FileRouteTypes {
     | '/helper/notifications'
     | '/owner/dashboard'
     | '/owner/notifications'
+    | '/owner/properties'
     | '/tenant/dashboard'
     | '/tenant/notifications'
   id:
@@ -436,6 +448,7 @@ export interface FileRouteTypes {
     | '/_authenticated/helper/notifications'
     | '/_authenticated/owner/dashboard'
     | '/_authenticated/owner/notifications'
+    | '/_authenticated/owner/properties'
     | '/_authenticated/tenant/dashboard'
     | '/_authenticated/tenant/notifications'
   fileRoutesById: FileRoutesById
@@ -669,6 +682,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOwnerNotificationsRouteImport
       parentRoute: typeof AuthenticatedOwnerRouteRoute
     }
+    '/_authenticated/owner/properties': {
+      id: '/_authenticated/owner/properties'
+      path: '/properties'
+      fullPath: '/owner/properties'
+      preLoaderRoute: typeof AuthenticatedOwnerPropertiesRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
     '/_authenticated/tenant/dashboard': {
       id: '/_authenticated/tenant/dashboard'
       path: '/dashboard'
@@ -761,12 +781,14 @@ const AuthenticatedHelperRouteRouteWithChildren =
 interface AuthenticatedOwnerRouteRouteChildren {
   AuthenticatedOwnerDashboardRoute: typeof AuthenticatedOwnerDashboardRoute
   AuthenticatedOwnerNotificationsRoute: typeof AuthenticatedOwnerNotificationsRoute
+  AuthenticatedOwnerPropertiesRoute: typeof AuthenticatedOwnerPropertiesRoute
 }
 
 const AuthenticatedOwnerRouteRouteChildren: AuthenticatedOwnerRouteRouteChildren =
   {
     AuthenticatedOwnerDashboardRoute: AuthenticatedOwnerDashboardRoute,
     AuthenticatedOwnerNotificationsRoute: AuthenticatedOwnerNotificationsRoute,
+    AuthenticatedOwnerPropertiesRoute: AuthenticatedOwnerPropertiesRoute,
   }
 
 const AuthenticatedOwnerRouteRouteWithChildren =
