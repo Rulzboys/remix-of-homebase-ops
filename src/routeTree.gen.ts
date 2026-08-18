@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as TentangRouteImport } from './routes/tentang'
+import { Route as KostIndexRouteImport } from './routes/kost/index'
+import { Route as KostIdRouteImport } from './routes/kost/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TentangRoute = TentangRouteImport.update({
+  id: '/tentang',
+  path: '/tentang',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KostIndexRoute = KostIndexRouteImport.update({
+  id: '/kost/',
+  path: '/kost/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KostIdRoute = KostIdRouteImport.update({
+  id: '/kost/$id',
+  path: '/kost/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kontak': typeof KontakRoute
+  '/tentang': typeof TentangRoute
+  '/kost/$id': typeof KostIdRoute
+  '/kost/': typeof KostIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kontak': typeof KontakRoute
+  '/tentang': typeof TentangRoute
+  '/kost/$id': typeof KostIdRoute
+  '/kost': typeof KostIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kontak': typeof KontakRoute
+  '/tentang': typeof TentangRoute
+  '/kost/$id': typeof KostIdRoute
+  '/kost/': typeof KostIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/kontak' | '/tentang' | '/kost/$id' | '/kost/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/kontak' | '/tentang' | '/kost/$id' | '/kost'
+  id: '__root__' | '/' | '/kontak' | '/tentang' | '/kost/$id' | '/kost/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KontakRoute: typeof KontakRoute
+  TentangRoute: typeof TentangRoute
+  KostIdRoute: typeof KostIdRoute
+  KostIndexRoute: typeof KostIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tentang': {
+      id: '/tentang'
+      path: '/tentang'
+      fullPath: '/tentang'
+      preLoaderRoute: typeof TentangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kost/': {
+      id: '/kost/'
+      path: '/kost'
+      fullPath: '/kost/'
+      preLoaderRoute: typeof KostIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kost/$id': {
+      id: '/kost/$id'
+      path: '/kost/$id'
+      fullPath: '/kost/$id'
+      preLoaderRoute: typeof KostIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KontakRoute: KontakRoute,
+  TentangRoute: TentangRoute,
+  KostIdRoute: KostIdRoute,
+  KostIndexRoute: KostIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
