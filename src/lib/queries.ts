@@ -8,18 +8,33 @@ async function run<T = Row[]>(promise: PromiseLike<{ data: unknown; error: unkno
   return (data ?? []) as T;
 }
 
+/**
+ * Profile FKs point at auth.users, so PostgREST cannot embed them.
+ * Attach profile names client-side instead.
+ */
+async function attachProfiles(rows: Row[], field: string, alias: string): Promise<Row[]> {
+  const ids = Array.from(
+    new Set(rows.map((r) => r[field]).filter((v): v is string => typeof v === "string")),
+  );
+  if (ids.length === 0) return rows.map((r) => ({ ...r, [alias]: null }));
+  const profiles = await run(
+    supabase.from("profiles").select("id, full_name, email").in("id", ids),
+  );
+  const byId = new Map((profiles as Row[]).map((p) => [p["id"] as string, p]));
+  return rows.map((r) => ({ ...r, [alias]: byId.get(r[field] as string) ?? null }));
+}
+
 /* ---------- properties & rooms ---------- */
 
 export function propertiesQuery() {
   return {
     queryKey: ["properties"],
-    queryFn: () =>
-      run(
-        supabase
-          .from("properties")
-          .select("*, rooms(id, status, price), owner:profiles!properties_owner_id_fkey(full_name)")
-          .order("name"),
-      ),
+    queryFn: async () => {
+      const rows = await run(
+        supabase.from("properties").select("*, rooms(id, status, price)").order("name"),
+      );
+      return attachProfiles(rows as Row[], "owner_id", "owner");
+    },
   };
 }
 
