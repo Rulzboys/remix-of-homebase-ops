@@ -95,7 +95,7 @@ export function cleaningQuery(filters?: { helperId?: string; status?: string[] }
         )
         .order("scheduled_date", { ascending: false });
       if (filters?.helperId) q = q.eq("helper_id", filters.helperId);
-      if (filters?.status?.length) q = q.in("status", filters.status);
+      if (filters?.status?.length) q = q.in("status", filters.status as never[]);
       return run(q);
     },
   };

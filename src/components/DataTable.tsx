@@ -47,7 +47,7 @@ export function DataTable<T extends { id: string }>({
   if (!rows || rows.length === 0) {
     return (
       <div className="panel">
-        <EmptyState title={emptyTitle} description={emptyDescription} action={emptyAction} />
+        <EmptyState title={emptyTitle} {...(emptyDescription ? { description: emptyDescription } : {})} {...(emptyAction ? { action: emptyAction } : {})} />
       </div>
     );
   }
