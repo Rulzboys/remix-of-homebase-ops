@@ -41,6 +41,7 @@ import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_
 import { Route as AuthenticatedOwnerCleaningRouteImport } from './routes/_authenticated/owner/cleaning'
 import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
 import { Route as AuthenticatedOwnerNotificationsRouteImport } from './routes/_authenticated/owner/notifications'
+import { Route as AuthenticatedOwnerPaymentsRouteImport } from './routes/_authenticated/owner/payments'
 import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_authenticated/owner/properties'
 import { Route as AuthenticatedOwnerTenantsRouteImport } from './routes/_authenticated/owner/tenants'
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
@@ -226,6 +227,12 @@ const AuthenticatedOwnerNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedOwnerRouteRoute,
   } as any)
+const AuthenticatedOwnerPaymentsRoute =
+  AuthenticatedOwnerPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedOwnerRouteRoute,
+  } as any)
 const AuthenticatedOwnerPropertiesRoute =
   AuthenticatedOwnerPropertiesRouteImport.update({
     id: '/properties',
@@ -283,6 +290,7 @@ export interface FileRoutesByFullPath {
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/owner/payments': typeof AuthenticatedOwnerPaymentsRoute
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
@@ -320,6 +328,7 @@ export interface FileRoutesByTo {
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/owner/payments': typeof AuthenticatedOwnerPaymentsRoute
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
@@ -359,6 +368,7 @@ export interface FileRoutesById {
   '/_authenticated/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
   '/_authenticated/owner/notifications': typeof AuthenticatedOwnerNotificationsRoute
+  '/_authenticated/owner/payments': typeof AuthenticatedOwnerPaymentsRoute
   '/_authenticated/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/_authenticated/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
@@ -398,6 +408,7 @@ export interface FileRouteTypes {
     | '/owner/cleaning'
     | '/owner/dashboard'
     | '/owner/notifications'
+    | '/owner/payments'
     | '/owner/properties'
     | '/owner/tenants'
     | '/tenant/dashboard'
@@ -435,6 +446,7 @@ export interface FileRouteTypes {
     | '/owner/cleaning'
     | '/owner/dashboard'
     | '/owner/notifications'
+    | '/owner/payments'
     | '/owner/properties'
     | '/owner/tenants'
     | '/tenant/dashboard'
@@ -473,6 +485,7 @@ export interface FileRouteTypes {
     | '/_authenticated/owner/cleaning'
     | '/_authenticated/owner/dashboard'
     | '/_authenticated/owner/notifications'
+    | '/_authenticated/owner/payments'
     | '/_authenticated/owner/properties'
     | '/_authenticated/owner/tenants'
     | '/_authenticated/tenant/dashboard'
@@ -715,6 +728,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOwnerNotificationsRouteImport
       parentRoute: typeof AuthenticatedOwnerRouteRoute
     }
+    '/_authenticated/owner/payments': {
+      id: '/_authenticated/owner/payments'
+      path: '/payments'
+      fullPath: '/owner/payments'
+      preLoaderRoute: typeof AuthenticatedOwnerPaymentsRouteImport
+      parentRoute: typeof AuthenticatedOwnerRouteRoute
+    }
     '/_authenticated/owner/properties': {
       id: '/_authenticated/owner/properties'
       path: '/properties'
@@ -822,6 +842,7 @@ interface AuthenticatedOwnerRouteRouteChildren {
   AuthenticatedOwnerCleaningRoute: typeof AuthenticatedOwnerCleaningRoute
   AuthenticatedOwnerDashboardRoute: typeof AuthenticatedOwnerDashboardRoute
   AuthenticatedOwnerNotificationsRoute: typeof AuthenticatedOwnerNotificationsRoute
+  AuthenticatedOwnerPaymentsRoute: typeof AuthenticatedOwnerPaymentsRoute
   AuthenticatedOwnerPropertiesRoute: typeof AuthenticatedOwnerPropertiesRoute
   AuthenticatedOwnerTenantsRoute: typeof AuthenticatedOwnerTenantsRoute
 }
@@ -831,6 +852,7 @@ const AuthenticatedOwnerRouteRouteChildren: AuthenticatedOwnerRouteRouteChildren
     AuthenticatedOwnerCleaningRoute: AuthenticatedOwnerCleaningRoute,
     AuthenticatedOwnerDashboardRoute: AuthenticatedOwnerDashboardRoute,
     AuthenticatedOwnerNotificationsRoute: AuthenticatedOwnerNotificationsRoute,
+    AuthenticatedOwnerPaymentsRoute: AuthenticatedOwnerPaymentsRoute,
     AuthenticatedOwnerPropertiesRoute: AuthenticatedOwnerPropertiesRoute,
     AuthenticatedOwnerTenantsRoute: AuthenticatedOwnerTenantsRoute,
   }
