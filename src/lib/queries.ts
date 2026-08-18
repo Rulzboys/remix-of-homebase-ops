@@ -103,16 +103,15 @@ export function tenantsQuery() {
 export function cleaningQuery(filters?: { helperId?: string; status?: string[] }) {
   return {
     queryKey: ["cleaning", filters ?? {}],
-    queryFn: () => {
+    queryFn: async () => {
       let q = supabase
         .from("cleaning_schedules")
-        .select(
-          "*, property:properties(id, name), helper:profiles!cleaning_schedules_helper_id_fkey(full_name)",
-        )
+        .select("*, property:properties(id, name)")
         .order("cleaning_date", { ascending: false });
       if (filters?.helperId) q = q.eq("helper_id", filters.helperId);
       if (filters?.status?.length) q = q.in("status", filters.status as never[]);
-      return run(q);
+      const rows = await run(q);
+      return attachProfiles(rows as Row[], "helper_id", "helper");
     },
   };
 }
