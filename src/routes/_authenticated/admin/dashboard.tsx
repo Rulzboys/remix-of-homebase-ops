@@ -75,7 +75,7 @@ function AdminDashboard() {
   const cleaningCols: Column<Row & { id: string }>[] = [
     { key: "prop", header: "Kost", cell: (r) => r["property"]?.name ?? "—" },
     { key: "helper", header: "Helper", cell: (r) => r["helper"]?.full_name ?? "Belum ditugaskan" },
-    { key: "date", header: "Jadwal", cell: (r) => formatDateShort(r["scheduled_date"]) },
+    { key: "date", header: "Jadwal", cell: (r) => formatDateShort(r["cleaning_date"]) },
     {
       key: "status",
       header: "Status",

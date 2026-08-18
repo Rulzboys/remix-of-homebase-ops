@@ -91,9 +91,9 @@ export function cleaningQuery(filters?: { helperId?: string; status?: string[] }
       let q = supabase
         .from("cleaning_schedules")
         .select(
-          "*, property:properties(id, name), room:rooms(id, room_number), helper:profiles!cleaning_schedules_helper_id_fkey(full_name)",
+          "*, property:properties(id, name), helper:profiles!cleaning_schedules_helper_id_fkey(full_name)",
         )
-        .order("scheduled_date", { ascending: false });
+        .order("cleaning_date", { ascending: false });
       if (filters?.helperId) q = q.eq("helper_id", filters.helperId);
       if (filters?.status?.length) q = q.in("status", filters.status as never[]);
       return run(q);
@@ -110,7 +110,7 @@ export function invoicesQuery(filters?: { tenantId?: string }) {
       let q = supabase
         .from("invoices")
         .select(
-          "*, tenant:tenants(id, full_name, phone, property_id), property:properties(id, name), room:rooms(id, room_number), payments(id, amount, paid_at, method, proof_url)",
+          "*, tenant:tenants(id, full_name, phone, property_id), property:properties(id, name), room:rooms(id, room_number), payments(id, amount, paid_at, payment_method, notes)",
         )
         .order("due_date", { ascending: false });
       if (filters?.tenantId) q = q.eq("tenant_id", filters.tenantId);
@@ -221,5 +221,54 @@ export function ownersQuery() {
       );
       return profiles as Row[];
     },
+  };
+}
+
+/* ---------- profiles by role ---------- */
+
+export function profilesByRoleQuery(role: "admin" | "owner" | "assistant" | "helper" | "tenant") {
+  return {
+    queryKey: ["profiles-by-role", role],
+    queryFn: async () => {
+      const roles = await run(supabase.from("user_roles").select("user_id").eq("role", role));
+      const ids = (roles as Row[]).map((r) => r["user_id"] as string);
+      if (ids.length === 0) return [] as Row[];
+      const profiles = await run(
+        supabase.from("profiles").select("id, full_name, email").in("id", ids).order("full_name"),
+      );
+      return profiles as Row[];
+    },
+  };
+}
+
+/* ---------- deals ---------- */
+
+export function dealsQuery() {
+  return {
+    queryKey: ["deals"],
+    queryFn: () =>
+      run(
+        supabase
+          .from("deals")
+          .select(
+            "*, prospect:prospects(id, full_name, phone), property:properties(id, name), room:rooms(id, room_number)",
+          )
+          .order("created_at", { ascending: false }),
+      ),
+  };
+}
+
+/* ---------- payments (flat list) ---------- */
+
+export function paymentsQuery() {
+  return {
+    queryKey: ["payments"],
+    queryFn: () =>
+      run(
+        supabase
+          .from("payments")
+          .select("*, tenant:tenants(id, full_name), invoice:invoices(id, invoice_number, billing_month, amount)")
+          .order("paid_at", { ascending: false }),
+      ),
   };
 }
