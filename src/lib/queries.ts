@@ -287,3 +287,33 @@ export function paymentsQuery() {
       ),
   };
 }
+
+/* ---------- documentations ---------- */
+
+export function visitDocsQuery(visitIds?: string[]) {
+  return {
+    queryKey: ["visit_documentations", visitIds ?? "all"],
+    queryFn: async () => {
+      let q = supabase
+        .from("visit_documentations")
+        .select("*, visit:visits(id, visit_date, property:properties(id, name), prospect:prospects(id, full_name))")
+        .order("created_at", { ascending: false });
+      if (visitIds?.length) q = q.in("visit_id", visitIds);
+      return run(q);
+    },
+  };
+}
+
+export function cleaningDocsQuery(cleaningIds?: string[]) {
+  return {
+    queryKey: ["cleaning_documentations", cleaningIds ?? "all"],
+    queryFn: async () => {
+      let q = supabase
+        .from("cleaning_documentations")
+        .select("*, cleaning:cleaning_schedules(id, cleaning_date, property:properties(id, name))")
+        .order("created_at", { ascending: false });
+      if (cleaningIds?.length) q = q.in("cleaning_id", cleaningIds);
+      return run(q);
+    },
+  };
+}
