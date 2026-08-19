@@ -55,6 +55,7 @@ import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_auth
 import { Route as AuthenticatedTenantInvoicesRouteImport } from './routes/_authenticated/tenant/invoices'
 import { Route as AuthenticatedTenantKostRouteImport } from './routes/_authenticated/tenant/kost'
 import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
+import { Route as AuthenticatedTenantProfileRouteImport } from './routes/_authenticated/tenant/profile'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -319,6 +320,12 @@ const AuthenticatedTenantNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedTenantRouteRoute,
   } as any)
+const AuthenticatedTenantProfileRoute =
+  AuthenticatedTenantProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -366,6 +373,7 @@ export interface FileRoutesByFullPath {
   '/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
+  '/tenant/profile': typeof AuthenticatedTenantProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -413,6 +421,7 @@ export interface FileRoutesByTo {
   '/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
+  '/tenant/profile': typeof AuthenticatedTenantProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -462,6 +471,7 @@ export interface FileRoutesById {
   '/_authenticated/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/_authenticated/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
+  '/_authenticated/tenant/profile': typeof AuthenticatedTenantProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -511,6 +521,7 @@ export interface FileRouteTypes {
     | '/tenant/invoices'
     | '/tenant/kost'
     | '/tenant/notifications'
+    | '/tenant/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -558,6 +569,7 @@ export interface FileRouteTypes {
     | '/tenant/invoices'
     | '/tenant/kost'
     | '/tenant/notifications'
+    | '/tenant/profile'
   id:
     | '__root__'
     | '/'
@@ -606,6 +618,7 @@ export interface FileRouteTypes {
     | '/_authenticated/tenant/invoices'
     | '/_authenticated/tenant/kost'
     | '/_authenticated/tenant/notifications'
+    | '/_authenticated/tenant/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -942,6 +955,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTenantNotificationsRouteImport
       parentRoute: typeof AuthenticatedTenantRouteRoute
     }
+    '/_authenticated/tenant/profile': {
+      id: '/_authenticated/tenant/profile'
+      path: '/profile'
+      fullPath: '/tenant/profile'
+      preLoaderRoute: typeof AuthenticatedTenantProfileRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
   }
 }
 
@@ -1060,6 +1080,7 @@ interface AuthenticatedTenantRouteRouteChildren {
   AuthenticatedTenantInvoicesRoute: typeof AuthenticatedTenantInvoicesRoute
   AuthenticatedTenantKostRoute: typeof AuthenticatedTenantKostRoute
   AuthenticatedTenantNotificationsRoute: typeof AuthenticatedTenantNotificationsRoute
+  AuthenticatedTenantProfileRoute: typeof AuthenticatedTenantProfileRoute
 }
 
 const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildren =
@@ -1070,6 +1091,7 @@ const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildr
     AuthenticatedTenantKostRoute: AuthenticatedTenantKostRoute,
     AuthenticatedTenantNotificationsRoute:
       AuthenticatedTenantNotificationsRoute,
+    AuthenticatedTenantProfileRoute: AuthenticatedTenantProfileRoute,
   }
 
 const AuthenticatedTenantRouteRouteWithChildren =
