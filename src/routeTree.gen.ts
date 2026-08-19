@@ -39,6 +39,7 @@ import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_a
 import { Route as AuthenticatedAssistantDocumentationRouteImport } from './routes/_authenticated/assistant/documentation'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedAssistantVisitsRouteImport } from './routes/_authenticated/assistant/visits'
+import { Route as AuthenticatedHelperCleaningRouteImport } from './routes/_authenticated/helper/cleaning'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
 import { Route as AuthenticatedOwnerCleaningRouteImport } from './routes/_authenticated/owner/cleaning'
@@ -219,6 +220,12 @@ const AuthenticatedAssistantVisitsRoute =
     path: '/visits',
     getParentRoute: () => AuthenticatedAssistantRouteRoute,
   } as any)
+const AuthenticatedHelperCleaningRoute =
+  AuthenticatedHelperCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
+  } as any)
 const AuthenticatedHelperDashboardRoute =
   AuthenticatedHelperDashboardRouteImport.update({
     id: '/dashboard',
@@ -316,6 +323,7 @@ export interface FileRoutesByFullPath {
   '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
+  '/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
@@ -358,6 +366,7 @@ export interface FileRoutesByTo {
   '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
+  '/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
@@ -402,6 +411,7 @@ export interface FileRoutesById {
   '/_authenticated/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
+  '/_authenticated/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/_authenticated/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
@@ -446,6 +456,7 @@ export interface FileRouteTypes {
     | '/assistant/documentation'
     | '/assistant/notifications'
     | '/assistant/visits'
+    | '/helper/cleaning'
     | '/helper/dashboard'
     | '/helper/notifications'
     | '/owner/cleaning'
@@ -488,6 +499,7 @@ export interface FileRouteTypes {
     | '/assistant/documentation'
     | '/assistant/notifications'
     | '/assistant/visits'
+    | '/helper/cleaning'
     | '/helper/dashboard'
     | '/helper/notifications'
     | '/owner/cleaning'
@@ -531,6 +543,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assistant/documentation'
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/assistant/visits'
+    | '/_authenticated/helper/cleaning'
     | '/_authenticated/helper/dashboard'
     | '/_authenticated/helper/notifications'
     | '/_authenticated/owner/cleaning'
@@ -766,6 +779,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssistantVisitsRouteImport
       parentRoute: typeof AuthenticatedAssistantRouteRoute
     }
+    '/_authenticated/helper/cleaning': {
+      id: '/_authenticated/helper/cleaning'
+      path: '/cleaning'
+      fullPath: '/helper/cleaning'
+      preLoaderRoute: typeof AuthenticatedHelperCleaningRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
+    }
     '/_authenticated/helper/dashboard': {
       id: '/_authenticated/helper/dashboard'
       path: '/dashboard'
@@ -909,12 +929,14 @@ const AuthenticatedAssistantRouteRouteWithChildren =
   )
 
 interface AuthenticatedHelperRouteRouteChildren {
+  AuthenticatedHelperCleaningRoute: typeof AuthenticatedHelperCleaningRoute
   AuthenticatedHelperDashboardRoute: typeof AuthenticatedHelperDashboardRoute
   AuthenticatedHelperNotificationsRoute: typeof AuthenticatedHelperNotificationsRoute
 }
 
 const AuthenticatedHelperRouteRouteChildren: AuthenticatedHelperRouteRouteChildren =
   {
+    AuthenticatedHelperCleaningRoute: AuthenticatedHelperCleaningRoute,
     AuthenticatedHelperDashboardRoute: AuthenticatedHelperDashboardRoute,
     AuthenticatedHelperNotificationsRoute:
       AuthenticatedHelperNotificationsRoute,
