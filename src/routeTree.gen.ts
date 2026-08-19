@@ -34,6 +34,7 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminTenantsRouteImport } from './routes/_authenticated/admin/tenants'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
 import { Route as AuthenticatedAdminVisitsRouteImport } from './routes/_authenticated/admin/visits'
+import { Route as AuthenticatedAssistantCheckinRouteImport } from './routes/_authenticated/assistant/checkin'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
 import { Route as AuthenticatedAssistantDocumentationRouteImport } from './routes/_authenticated/assistant/documentation'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
@@ -188,6 +189,12 @@ const AuthenticatedAdminVisitsRoute =
     path: '/visits',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAssistantCheckinRoute =
+  AuthenticatedAssistantCheckinRouteImport.update({
+    id: '/checkin',
+    path: '/checkin',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
 const AuthenticatedAssistantDashboardRoute =
   AuthenticatedAssistantDashboardRouteImport.update({
     id: '/dashboard',
@@ -304,6 +311,7 @@ export interface FileRoutesByFullPath {
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
+  '/assistant/checkin': typeof AuthenticatedAssistantCheckinRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
@@ -345,6 +353,7 @@ export interface FileRoutesByTo {
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
+  '/assistant/checkin': typeof AuthenticatedAssistantCheckinRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
@@ -388,6 +397,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/admin/visits': typeof AuthenticatedAdminVisitsRoute
+  '/_authenticated/assistant/checkin': typeof AuthenticatedAssistantCheckinRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
   '/_authenticated/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
@@ -431,6 +441,7 @@ export interface FileRouteTypes {
     | '/admin/tenants'
     | '/admin/users'
     | '/admin/visits'
+    | '/assistant/checkin'
     | '/assistant/dashboard'
     | '/assistant/documentation'
     | '/assistant/notifications'
@@ -472,6 +483,7 @@ export interface FileRouteTypes {
     | '/admin/tenants'
     | '/admin/users'
     | '/admin/visits'
+    | '/assistant/checkin'
     | '/assistant/dashboard'
     | '/assistant/documentation'
     | '/assistant/notifications'
@@ -514,6 +526,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/tenants'
     | '/_authenticated/admin/users'
     | '/_authenticated/admin/visits'
+    | '/_authenticated/assistant/checkin'
     | '/_authenticated/assistant/dashboard'
     | '/_authenticated/assistant/documentation'
     | '/_authenticated/assistant/notifications'
@@ -718,6 +731,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminVisitsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/assistant/checkin': {
+      id: '/_authenticated/assistant/checkin'
+      path: '/checkin'
+      fullPath: '/assistant/checkin'
+      preLoaderRoute: typeof AuthenticatedAssistantCheckinRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
     '/_authenticated/assistant/dashboard': {
       id: '/_authenticated/assistant/dashboard'
       path: '/dashboard'
@@ -865,6 +885,7 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedAssistantRouteRouteChildren {
+  AuthenticatedAssistantCheckinRoute: typeof AuthenticatedAssistantCheckinRoute
   AuthenticatedAssistantDashboardRoute: typeof AuthenticatedAssistantDashboardRoute
   AuthenticatedAssistantDocumentationRoute: typeof AuthenticatedAssistantDocumentationRoute
   AuthenticatedAssistantNotificationsRoute: typeof AuthenticatedAssistantNotificationsRoute
@@ -873,6 +894,7 @@ interface AuthenticatedAssistantRouteRouteChildren {
 
 const AuthenticatedAssistantRouteRouteChildren: AuthenticatedAssistantRouteRouteChildren =
   {
+    AuthenticatedAssistantCheckinRoute: AuthenticatedAssistantCheckinRoute,
     AuthenticatedAssistantDashboardRoute: AuthenticatedAssistantDashboardRoute,
     AuthenticatedAssistantDocumentationRoute:
       AuthenticatedAssistantDocumentationRoute,
