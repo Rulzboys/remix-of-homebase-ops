@@ -41,6 +41,7 @@ import { Route as AuthenticatedAssistantNotificationsRouteImport } from './route
 import { Route as AuthenticatedAssistantVisitsRouteImport } from './routes/_authenticated/assistant/visits'
 import { Route as AuthenticatedHelperCleaningRouteImport } from './routes/_authenticated/helper/cleaning'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
+import { Route as AuthenticatedHelperHistoryRouteImport } from './routes/_authenticated/helper/history'
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
 import { Route as AuthenticatedOwnerCleaningRouteImport } from './routes/_authenticated/owner/cleaning'
 import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
@@ -232,6 +233,12 @@ const AuthenticatedHelperDashboardRoute =
     path: '/dashboard',
     getParentRoute: () => AuthenticatedHelperRouteRoute,
   } as any)
+const AuthenticatedHelperHistoryRoute =
+  AuthenticatedHelperHistoryRouteImport.update({
+    id: '/history',
+    path: '/history',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
+  } as any)
 const AuthenticatedHelperNotificationsRoute =
   AuthenticatedHelperNotificationsRouteImport.update({
     id: '/notifications',
@@ -325,6 +332,7 @@ export interface FileRoutesByFullPath {
   '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
   '/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/helper/history': typeof AuthenticatedHelperHistoryRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
@@ -368,6 +376,7 @@ export interface FileRoutesByTo {
   '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
   '/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/helper/history': typeof AuthenticatedHelperHistoryRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
@@ -413,6 +422,7 @@ export interface FileRoutesById {
   '/_authenticated/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
   '/_authenticated/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/_authenticated/helper/history': typeof AuthenticatedHelperHistoryRoute
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/_authenticated/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
@@ -458,6 +468,7 @@ export interface FileRouteTypes {
     | '/assistant/visits'
     | '/helper/cleaning'
     | '/helper/dashboard'
+    | '/helper/history'
     | '/helper/notifications'
     | '/owner/cleaning'
     | '/owner/dashboard'
@@ -501,6 +512,7 @@ export interface FileRouteTypes {
     | '/assistant/visits'
     | '/helper/cleaning'
     | '/helper/dashboard'
+    | '/helper/history'
     | '/helper/notifications'
     | '/owner/cleaning'
     | '/owner/dashboard'
@@ -545,6 +557,7 @@ export interface FileRouteTypes {
     | '/_authenticated/assistant/visits'
     | '/_authenticated/helper/cleaning'
     | '/_authenticated/helper/dashboard'
+    | '/_authenticated/helper/history'
     | '/_authenticated/helper/notifications'
     | '/_authenticated/owner/cleaning'
     | '/_authenticated/owner/dashboard'
@@ -793,6 +806,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHelperDashboardRouteImport
       parentRoute: typeof AuthenticatedHelperRouteRoute
     }
+    '/_authenticated/helper/history': {
+      id: '/_authenticated/helper/history'
+      path: '/history'
+      fullPath: '/helper/history'
+      preLoaderRoute: typeof AuthenticatedHelperHistoryRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
+    }
     '/_authenticated/helper/notifications': {
       id: '/_authenticated/helper/notifications'
       path: '/notifications'
@@ -931,6 +951,7 @@ const AuthenticatedAssistantRouteRouteWithChildren =
 interface AuthenticatedHelperRouteRouteChildren {
   AuthenticatedHelperCleaningRoute: typeof AuthenticatedHelperCleaningRoute
   AuthenticatedHelperDashboardRoute: typeof AuthenticatedHelperDashboardRoute
+  AuthenticatedHelperHistoryRoute: typeof AuthenticatedHelperHistoryRoute
   AuthenticatedHelperNotificationsRoute: typeof AuthenticatedHelperNotificationsRoute
 }
 
@@ -938,6 +959,7 @@ const AuthenticatedHelperRouteRouteChildren: AuthenticatedHelperRouteRouteChildr
   {
     AuthenticatedHelperCleaningRoute: AuthenticatedHelperCleaningRoute,
     AuthenticatedHelperDashboardRoute: AuthenticatedHelperDashboardRoute,
+    AuthenticatedHelperHistoryRoute: AuthenticatedHelperHistoryRoute,
     AuthenticatedHelperNotificationsRoute:
       AuthenticatedHelperNotificationsRoute,
   }
