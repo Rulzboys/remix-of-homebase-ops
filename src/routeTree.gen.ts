@@ -34,9 +34,14 @@ import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminTenantsRouteImport } from './routes/_authenticated/admin/tenants'
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
 import { Route as AuthenticatedAdminVisitsRouteImport } from './routes/_authenticated/admin/visits'
+import { Route as AuthenticatedAssistantCheckinRouteImport } from './routes/_authenticated/assistant/checkin'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
+import { Route as AuthenticatedAssistantDocumentationRouteImport } from './routes/_authenticated/assistant/documentation'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
+import { Route as AuthenticatedAssistantVisitsRouteImport } from './routes/_authenticated/assistant/visits'
+import { Route as AuthenticatedHelperCleaningRouteImport } from './routes/_authenticated/helper/cleaning'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
+import { Route as AuthenticatedHelperHistoryRouteImport } from './routes/_authenticated/helper/history'
 import { Route as AuthenticatedHelperNotificationsRouteImport } from './routes/_authenticated/helper/notifications'
 import { Route as AuthenticatedOwnerCleaningRouteImport } from './routes/_authenticated/owner/cleaning'
 import { Route as AuthenticatedOwnerDashboardRouteImport } from './routes/_authenticated/owner/dashboard'
@@ -186,10 +191,22 @@ const AuthenticatedAdminVisitsRoute =
     path: '/visits',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAssistantCheckinRoute =
+  AuthenticatedAssistantCheckinRouteImport.update({
+    id: '/checkin',
+    path: '/checkin',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
 const AuthenticatedAssistantDashboardRoute =
   AuthenticatedAssistantDashboardRouteImport.update({
     id: '/dashboard',
     path: '/dashboard',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
+const AuthenticatedAssistantDocumentationRoute =
+  AuthenticatedAssistantDocumentationRouteImport.update({
+    id: '/documentation',
+    path: '/documentation',
     getParentRoute: () => AuthenticatedAssistantRouteRoute,
   } as any)
 const AuthenticatedAssistantNotificationsRoute =
@@ -198,10 +215,28 @@ const AuthenticatedAssistantNotificationsRoute =
     path: '/notifications',
     getParentRoute: () => AuthenticatedAssistantRouteRoute,
   } as any)
+const AuthenticatedAssistantVisitsRoute =
+  AuthenticatedAssistantVisitsRouteImport.update({
+    id: '/visits',
+    path: '/visits',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
+const AuthenticatedHelperCleaningRoute =
+  AuthenticatedHelperCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
+  } as any)
 const AuthenticatedHelperDashboardRoute =
   AuthenticatedHelperDashboardRouteImport.update({
     id: '/dashboard',
     path: '/dashboard',
+    getParentRoute: () => AuthenticatedHelperRouteRoute,
+  } as any)
+const AuthenticatedHelperHistoryRoute =
+  AuthenticatedHelperHistoryRouteImport.update({
+    id: '/history',
+    path: '/history',
     getParentRoute: () => AuthenticatedHelperRouteRoute,
   } as any)
 const AuthenticatedHelperNotificationsRoute =
@@ -290,9 +325,14 @@ export interface FileRoutesByFullPath {
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
+  '/assistant/checkin': typeof AuthenticatedAssistantCheckinRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
+  '/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/helper/history': typeof AuthenticatedHelperHistoryRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
@@ -329,9 +369,14 @@ export interface FileRoutesByTo {
   '/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
+  '/assistant/checkin': typeof AuthenticatedAssistantCheckinRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
+  '/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/helper/history': typeof AuthenticatedHelperHistoryRoute
   '/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
@@ -370,9 +415,14 @@ export interface FileRoutesById {
   '/_authenticated/admin/tenants': typeof AuthenticatedAdminTenantsRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/admin/visits': typeof AuthenticatedAdminVisitsRoute
+  '/_authenticated/assistant/checkin': typeof AuthenticatedAssistantCheckinRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/_authenticated/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
+  '/_authenticated/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
+  '/_authenticated/helper/cleaning': typeof AuthenticatedHelperCleaningRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
+  '/_authenticated/helper/history': typeof AuthenticatedHelperHistoryRoute
   '/_authenticated/helper/notifications': typeof AuthenticatedHelperNotificationsRoute
   '/_authenticated/owner/cleaning': typeof AuthenticatedOwnerCleaningRoute
   '/_authenticated/owner/dashboard': typeof AuthenticatedOwnerDashboardRoute
@@ -411,9 +461,14 @@ export interface FileRouteTypes {
     | '/admin/tenants'
     | '/admin/users'
     | '/admin/visits'
+    | '/assistant/checkin'
     | '/assistant/dashboard'
+    | '/assistant/documentation'
     | '/assistant/notifications'
+    | '/assistant/visits'
+    | '/helper/cleaning'
     | '/helper/dashboard'
+    | '/helper/history'
     | '/helper/notifications'
     | '/owner/cleaning'
     | '/owner/dashboard'
@@ -450,9 +505,14 @@ export interface FileRouteTypes {
     | '/admin/tenants'
     | '/admin/users'
     | '/admin/visits'
+    | '/assistant/checkin'
     | '/assistant/dashboard'
+    | '/assistant/documentation'
     | '/assistant/notifications'
+    | '/assistant/visits'
+    | '/helper/cleaning'
     | '/helper/dashboard'
+    | '/helper/history'
     | '/helper/notifications'
     | '/owner/cleaning'
     | '/owner/dashboard'
@@ -490,9 +550,14 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/tenants'
     | '/_authenticated/admin/users'
     | '/_authenticated/admin/visits'
+    | '/_authenticated/assistant/checkin'
     | '/_authenticated/assistant/dashboard'
+    | '/_authenticated/assistant/documentation'
     | '/_authenticated/assistant/notifications'
+    | '/_authenticated/assistant/visits'
+    | '/_authenticated/helper/cleaning'
     | '/_authenticated/helper/dashboard'
+    | '/_authenticated/helper/history'
     | '/_authenticated/helper/notifications'
     | '/_authenticated/owner/cleaning'
     | '/_authenticated/owner/dashboard'
@@ -692,11 +757,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminVisitsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/assistant/checkin': {
+      id: '/_authenticated/assistant/checkin'
+      path: '/checkin'
+      fullPath: '/assistant/checkin'
+      preLoaderRoute: typeof AuthenticatedAssistantCheckinRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
     '/_authenticated/assistant/dashboard': {
       id: '/_authenticated/assistant/dashboard'
       path: '/dashboard'
       fullPath: '/assistant/dashboard'
       preLoaderRoute: typeof AuthenticatedAssistantDashboardRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
+    '/_authenticated/assistant/documentation': {
+      id: '/_authenticated/assistant/documentation'
+      path: '/documentation'
+      fullPath: '/assistant/documentation'
+      preLoaderRoute: typeof AuthenticatedAssistantDocumentationRouteImport
       parentRoute: typeof AuthenticatedAssistantRouteRoute
     }
     '/_authenticated/assistant/notifications': {
@@ -706,11 +785,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssistantNotificationsRouteImport
       parentRoute: typeof AuthenticatedAssistantRouteRoute
     }
+    '/_authenticated/assistant/visits': {
+      id: '/_authenticated/assistant/visits'
+      path: '/visits'
+      fullPath: '/assistant/visits'
+      preLoaderRoute: typeof AuthenticatedAssistantVisitsRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
+    '/_authenticated/helper/cleaning': {
+      id: '/_authenticated/helper/cleaning'
+      path: '/cleaning'
+      fullPath: '/helper/cleaning'
+      preLoaderRoute: typeof AuthenticatedHelperCleaningRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
+    }
     '/_authenticated/helper/dashboard': {
       id: '/_authenticated/helper/dashboard'
       path: '/dashboard'
       fullPath: '/helper/dashboard'
       preLoaderRoute: typeof AuthenticatedHelperDashboardRouteImport
+      parentRoute: typeof AuthenticatedHelperRouteRoute
+    }
+    '/_authenticated/helper/history': {
+      id: '/_authenticated/helper/history'
+      path: '/history'
+      fullPath: '/helper/history'
+      preLoaderRoute: typeof AuthenticatedHelperHistoryRouteImport
       parentRoute: typeof AuthenticatedHelperRouteRoute
     }
     '/_authenticated/helper/notifications': {
@@ -825,15 +925,22 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedAssistantRouteRouteChildren {
+  AuthenticatedAssistantCheckinRoute: typeof AuthenticatedAssistantCheckinRoute
   AuthenticatedAssistantDashboardRoute: typeof AuthenticatedAssistantDashboardRoute
+  AuthenticatedAssistantDocumentationRoute: typeof AuthenticatedAssistantDocumentationRoute
   AuthenticatedAssistantNotificationsRoute: typeof AuthenticatedAssistantNotificationsRoute
+  AuthenticatedAssistantVisitsRoute: typeof AuthenticatedAssistantVisitsRoute
 }
 
 const AuthenticatedAssistantRouteRouteChildren: AuthenticatedAssistantRouteRouteChildren =
   {
+    AuthenticatedAssistantCheckinRoute: AuthenticatedAssistantCheckinRoute,
     AuthenticatedAssistantDashboardRoute: AuthenticatedAssistantDashboardRoute,
+    AuthenticatedAssistantDocumentationRoute:
+      AuthenticatedAssistantDocumentationRoute,
     AuthenticatedAssistantNotificationsRoute:
       AuthenticatedAssistantNotificationsRoute,
+    AuthenticatedAssistantVisitsRoute: AuthenticatedAssistantVisitsRoute,
   }
 
 const AuthenticatedAssistantRouteRouteWithChildren =
@@ -842,13 +949,17 @@ const AuthenticatedAssistantRouteRouteWithChildren =
   )
 
 interface AuthenticatedHelperRouteRouteChildren {
+  AuthenticatedHelperCleaningRoute: typeof AuthenticatedHelperCleaningRoute
   AuthenticatedHelperDashboardRoute: typeof AuthenticatedHelperDashboardRoute
+  AuthenticatedHelperHistoryRoute: typeof AuthenticatedHelperHistoryRoute
   AuthenticatedHelperNotificationsRoute: typeof AuthenticatedHelperNotificationsRoute
 }
 
 const AuthenticatedHelperRouteRouteChildren: AuthenticatedHelperRouteRouteChildren =
   {
+    AuthenticatedHelperCleaningRoute: AuthenticatedHelperCleaningRoute,
     AuthenticatedHelperDashboardRoute: AuthenticatedHelperDashboardRoute,
+    AuthenticatedHelperHistoryRoute: AuthenticatedHelperHistoryRoute,
     AuthenticatedHelperNotificationsRoute:
       AuthenticatedHelperNotificationsRoute,
   }
