@@ -50,9 +50,12 @@ import { Route as AuthenticatedOwnerPaymentsRouteImport } from './routes/_authen
 import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_authenticated/owner/properties'
 import { Route as AuthenticatedOwnerReportsRouteImport } from './routes/_authenticated/owner/reports'
 import { Route as AuthenticatedOwnerTenantsRouteImport } from './routes/_authenticated/owner/tenants'
+import { Route as AuthenticatedTenantCleaningRouteImport } from './routes/_authenticated/tenant/cleaning'
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
+import { Route as AuthenticatedTenantInvoicesRouteImport } from './routes/_authenticated/tenant/invoices'
 import { Route as AuthenticatedTenantKostRouteImport } from './routes/_authenticated/tenant/kost'
 import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
+import { Route as AuthenticatedTenantProfileRouteImport } from './routes/_authenticated/tenant/profile'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -288,10 +291,22 @@ const AuthenticatedOwnerTenantsRoute =
     path: '/tenants',
     getParentRoute: () => AuthenticatedOwnerRouteRoute,
   } as any)
+const AuthenticatedTenantCleaningRoute =
+  AuthenticatedTenantCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
 const AuthenticatedTenantDashboardRoute =
   AuthenticatedTenantDashboardRouteImport.update({
     id: '/dashboard',
     path: '/dashboard',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
+const AuthenticatedTenantInvoicesRoute =
+  AuthenticatedTenantInvoicesRouteImport.update({
+    id: '/invoices',
+    path: '/invoices',
     getParentRoute: () => AuthenticatedTenantRouteRoute,
   } as any)
 const AuthenticatedTenantKostRoute = AuthenticatedTenantKostRouteImport.update({
@@ -303,6 +318,12 @@ const AuthenticatedTenantNotificationsRoute =
   AuthenticatedTenantNotificationsRouteImport.update({
     id: '/notifications',
     path: '/notifications',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
+const AuthenticatedTenantProfileRoute =
+  AuthenticatedTenantProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
     getParentRoute: () => AuthenticatedTenantRouteRoute,
   } as any)
 
@@ -347,9 +368,12 @@ export interface FileRoutesByFullPath {
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
+  '/tenant/cleaning': typeof AuthenticatedTenantCleaningRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
+  '/tenant/profile': typeof AuthenticatedTenantProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -392,9 +416,12 @@ export interface FileRoutesByTo {
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
+  '/tenant/cleaning': typeof AuthenticatedTenantCleaningRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
+  '/tenant/profile': typeof AuthenticatedTenantProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -439,9 +466,12 @@ export interface FileRoutesById {
   '/_authenticated/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/_authenticated/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/_authenticated/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
+  '/_authenticated/tenant/cleaning': typeof AuthenticatedTenantCleaningRoute
   '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/_authenticated/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/_authenticated/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
+  '/_authenticated/tenant/profile': typeof AuthenticatedTenantProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -486,9 +516,12 @@ export interface FileRouteTypes {
     | '/owner/properties'
     | '/owner/reports'
     | '/owner/tenants'
+    | '/tenant/cleaning'
     | '/tenant/dashboard'
+    | '/tenant/invoices'
     | '/tenant/kost'
     | '/tenant/notifications'
+    | '/tenant/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -531,9 +564,12 @@ export interface FileRouteTypes {
     | '/owner/properties'
     | '/owner/reports'
     | '/owner/tenants'
+    | '/tenant/cleaning'
     | '/tenant/dashboard'
+    | '/tenant/invoices'
     | '/tenant/kost'
     | '/tenant/notifications'
+    | '/tenant/profile'
   id:
     | '__root__'
     | '/'
@@ -577,9 +613,12 @@ export interface FileRouteTypes {
     | '/_authenticated/owner/properties'
     | '/_authenticated/owner/reports'
     | '/_authenticated/owner/tenants'
+    | '/_authenticated/tenant/cleaning'
     | '/_authenticated/tenant/dashboard'
+    | '/_authenticated/tenant/invoices'
     | '/_authenticated/tenant/kost'
     | '/_authenticated/tenant/notifications'
+    | '/_authenticated/tenant/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -881,11 +920,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOwnerTenantsRouteImport
       parentRoute: typeof AuthenticatedOwnerRouteRoute
     }
+    '/_authenticated/tenant/cleaning': {
+      id: '/_authenticated/tenant/cleaning'
+      path: '/cleaning'
+      fullPath: '/tenant/cleaning'
+      preLoaderRoute: typeof AuthenticatedTenantCleaningRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
     '/_authenticated/tenant/dashboard': {
       id: '/_authenticated/tenant/dashboard'
       path: '/dashboard'
       fullPath: '/tenant/dashboard'
       preLoaderRoute: typeof AuthenticatedTenantDashboardRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
+    '/_authenticated/tenant/invoices': {
+      id: '/_authenticated/tenant/invoices'
+      path: '/invoices'
+      fullPath: '/tenant/invoices'
+      preLoaderRoute: typeof AuthenticatedTenantInvoicesRouteImport
       parentRoute: typeof AuthenticatedTenantRouteRoute
     }
     '/_authenticated/tenant/kost': {
@@ -900,6 +953,13 @@ declare module '@tanstack/react-router' {
       path: '/notifications'
       fullPath: '/tenant/notifications'
       preLoaderRoute: typeof AuthenticatedTenantNotificationsRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
+    '/_authenticated/tenant/profile': {
+      id: '/_authenticated/tenant/profile'
+      path: '/profile'
+      fullPath: '/tenant/profile'
+      preLoaderRoute: typeof AuthenticatedTenantProfileRouteImport
       parentRoute: typeof AuthenticatedTenantRouteRoute
     }
   }
@@ -1015,17 +1075,23 @@ const AuthenticatedOwnerRouteRouteWithChildren =
   )
 
 interface AuthenticatedTenantRouteRouteChildren {
+  AuthenticatedTenantCleaningRoute: typeof AuthenticatedTenantCleaningRoute
   AuthenticatedTenantDashboardRoute: typeof AuthenticatedTenantDashboardRoute
+  AuthenticatedTenantInvoicesRoute: typeof AuthenticatedTenantInvoicesRoute
   AuthenticatedTenantKostRoute: typeof AuthenticatedTenantKostRoute
   AuthenticatedTenantNotificationsRoute: typeof AuthenticatedTenantNotificationsRoute
+  AuthenticatedTenantProfileRoute: typeof AuthenticatedTenantProfileRoute
 }
 
 const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildren =
   {
+    AuthenticatedTenantCleaningRoute: AuthenticatedTenantCleaningRoute,
     AuthenticatedTenantDashboardRoute: AuthenticatedTenantDashboardRoute,
+    AuthenticatedTenantInvoicesRoute: AuthenticatedTenantInvoicesRoute,
     AuthenticatedTenantKostRoute: AuthenticatedTenantKostRoute,
     AuthenticatedTenantNotificationsRoute:
       AuthenticatedTenantNotificationsRoute,
+    AuthenticatedTenantProfileRoute: AuthenticatedTenantProfileRoute,
   }
 
 const AuthenticatedTenantRouteRouteWithChildren =
