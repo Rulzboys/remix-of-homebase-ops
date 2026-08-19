@@ -50,6 +50,7 @@ import { Route as AuthenticatedOwnerPaymentsRouteImport } from './routes/_authen
 import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_authenticated/owner/properties'
 import { Route as AuthenticatedOwnerReportsRouteImport } from './routes/_authenticated/owner/reports'
 import { Route as AuthenticatedOwnerTenantsRouteImport } from './routes/_authenticated/owner/tenants'
+import { Route as AuthenticatedTenantCleaningRouteImport } from './routes/_authenticated/tenant/cleaning'
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
 import { Route as AuthenticatedTenantInvoicesRouteImport } from './routes/_authenticated/tenant/invoices'
 import { Route as AuthenticatedTenantKostRouteImport } from './routes/_authenticated/tenant/kost'
@@ -289,6 +290,12 @@ const AuthenticatedOwnerTenantsRoute =
     path: '/tenants',
     getParentRoute: () => AuthenticatedOwnerRouteRoute,
   } as any)
+const AuthenticatedTenantCleaningRoute =
+  AuthenticatedTenantCleaningRouteImport.update({
+    id: '/cleaning',
+    path: '/cleaning',
+    getParentRoute: () => AuthenticatedTenantRouteRoute,
+  } as any)
 const AuthenticatedTenantDashboardRoute =
   AuthenticatedTenantDashboardRouteImport.update({
     id: '/dashboard',
@@ -354,6 +361,7 @@ export interface FileRoutesByFullPath {
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
+  '/tenant/cleaning': typeof AuthenticatedTenantCleaningRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/tenant/kost': typeof AuthenticatedTenantKostRoute
@@ -400,6 +408,7 @@ export interface FileRoutesByTo {
   '/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
+  '/tenant/cleaning': typeof AuthenticatedTenantCleaningRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/tenant/kost': typeof AuthenticatedTenantKostRoute
@@ -448,6 +457,7 @@ export interface FileRoutesById {
   '/_authenticated/owner/properties': typeof AuthenticatedOwnerPropertiesRoute
   '/_authenticated/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/_authenticated/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
+  '/_authenticated/tenant/cleaning': typeof AuthenticatedTenantCleaningRoute
   '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
   '/_authenticated/tenant/invoices': typeof AuthenticatedTenantInvoicesRoute
   '/_authenticated/tenant/kost': typeof AuthenticatedTenantKostRoute
@@ -496,6 +506,7 @@ export interface FileRouteTypes {
     | '/owner/properties'
     | '/owner/reports'
     | '/owner/tenants'
+    | '/tenant/cleaning'
     | '/tenant/dashboard'
     | '/tenant/invoices'
     | '/tenant/kost'
@@ -542,6 +553,7 @@ export interface FileRouteTypes {
     | '/owner/properties'
     | '/owner/reports'
     | '/owner/tenants'
+    | '/tenant/cleaning'
     | '/tenant/dashboard'
     | '/tenant/invoices'
     | '/tenant/kost'
@@ -589,6 +601,7 @@ export interface FileRouteTypes {
     | '/_authenticated/owner/properties'
     | '/_authenticated/owner/reports'
     | '/_authenticated/owner/tenants'
+    | '/_authenticated/tenant/cleaning'
     | '/_authenticated/tenant/dashboard'
     | '/_authenticated/tenant/invoices'
     | '/_authenticated/tenant/kost'
@@ -894,6 +907,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOwnerTenantsRouteImport
       parentRoute: typeof AuthenticatedOwnerRouteRoute
     }
+    '/_authenticated/tenant/cleaning': {
+      id: '/_authenticated/tenant/cleaning'
+      path: '/cleaning'
+      fullPath: '/tenant/cleaning'
+      preLoaderRoute: typeof AuthenticatedTenantCleaningRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
     '/_authenticated/tenant/dashboard': {
       id: '/_authenticated/tenant/dashboard'
       path: '/dashboard'
@@ -1035,6 +1055,7 @@ const AuthenticatedOwnerRouteRouteWithChildren =
   )
 
 interface AuthenticatedTenantRouteRouteChildren {
+  AuthenticatedTenantCleaningRoute: typeof AuthenticatedTenantCleaningRoute
   AuthenticatedTenantDashboardRoute: typeof AuthenticatedTenantDashboardRoute
   AuthenticatedTenantInvoicesRoute: typeof AuthenticatedTenantInvoicesRoute
   AuthenticatedTenantKostRoute: typeof AuthenticatedTenantKostRoute
@@ -1043,6 +1064,7 @@ interface AuthenticatedTenantRouteRouteChildren {
 
 const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildren =
   {
+    AuthenticatedTenantCleaningRoute: AuthenticatedTenantCleaningRoute,
     AuthenticatedTenantDashboardRoute: AuthenticatedTenantDashboardRoute,
     AuthenticatedTenantInvoicesRoute: AuthenticatedTenantInvoicesRoute,
     AuthenticatedTenantKostRoute: AuthenticatedTenantKostRoute,
