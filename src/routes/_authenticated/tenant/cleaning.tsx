@@ -29,7 +29,7 @@ export const Route = createFileRoute("/_authenticated/tenant/cleaning")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: TenantCleaning;
+  component: TenantCleaning,
 });
 
 function TenantCleaning() {
