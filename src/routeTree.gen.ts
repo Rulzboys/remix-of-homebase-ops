@@ -35,6 +35,7 @@ import { Route as AuthenticatedAdminTenantsRouteImport } from './routes/_authent
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
 import { Route as AuthenticatedAdminVisitsRouteImport } from './routes/_authenticated/admin/visits'
 import { Route as AuthenticatedAssistantDashboardRouteImport } from './routes/_authenticated/assistant/dashboard'
+import { Route as AuthenticatedAssistantDocumentationRouteImport } from './routes/_authenticated/assistant/documentation'
 import { Route as AuthenticatedAssistantNotificationsRouteImport } from './routes/_authenticated/assistant/notifications'
 import { Route as AuthenticatedAssistantVisitsRouteImport } from './routes/_authenticated/assistant/visits'
 import { Route as AuthenticatedHelperDashboardRouteImport } from './routes/_authenticated/helper/dashboard'
@@ -193,6 +194,12 @@ const AuthenticatedAssistantDashboardRoute =
     path: '/dashboard',
     getParentRoute: () => AuthenticatedAssistantRouteRoute,
   } as any)
+const AuthenticatedAssistantDocumentationRoute =
+  AuthenticatedAssistantDocumentationRouteImport.update({
+    id: '/documentation',
+    path: '/documentation',
+    getParentRoute: () => AuthenticatedAssistantRouteRoute,
+  } as any)
 const AuthenticatedAssistantNotificationsRoute =
   AuthenticatedAssistantNotificationsRouteImport.update({
     id: '/notifications',
@@ -298,6 +305,7 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -338,6 +346,7 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AuthenticatedAdminUsersRoute
   '/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
   '/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -380,6 +389,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
   '/_authenticated/admin/visits': typeof AuthenticatedAdminVisitsRoute
   '/_authenticated/assistant/dashboard': typeof AuthenticatedAssistantDashboardRoute
+  '/_authenticated/assistant/documentation': typeof AuthenticatedAssistantDocumentationRoute
   '/_authenticated/assistant/notifications': typeof AuthenticatedAssistantNotificationsRoute
   '/_authenticated/assistant/visits': typeof AuthenticatedAssistantVisitsRoute
   '/_authenticated/helper/dashboard': typeof AuthenticatedHelperDashboardRoute
@@ -422,6 +432,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/admin/visits'
     | '/assistant/dashboard'
+    | '/assistant/documentation'
     | '/assistant/notifications'
     | '/assistant/visits'
     | '/helper/dashboard'
@@ -462,6 +473,7 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/admin/visits'
     | '/assistant/dashboard'
+    | '/assistant/documentation'
     | '/assistant/notifications'
     | '/assistant/visits'
     | '/helper/dashboard'
@@ -503,6 +515,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/users'
     | '/_authenticated/admin/visits'
     | '/_authenticated/assistant/dashboard'
+    | '/_authenticated/assistant/documentation'
     | '/_authenticated/assistant/notifications'
     | '/_authenticated/assistant/visits'
     | '/_authenticated/helper/dashboard'
@@ -712,6 +725,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAssistantDashboardRouteImport
       parentRoute: typeof AuthenticatedAssistantRouteRoute
     }
+    '/_authenticated/assistant/documentation': {
+      id: '/_authenticated/assistant/documentation'
+      path: '/documentation'
+      fullPath: '/assistant/documentation'
+      preLoaderRoute: typeof AuthenticatedAssistantDocumentationRouteImport
+      parentRoute: typeof AuthenticatedAssistantRouteRoute
+    }
     '/_authenticated/assistant/notifications': {
       id: '/_authenticated/assistant/notifications'
       path: '/notifications'
@@ -846,6 +866,7 @@ const AuthenticatedAdminRouteRouteWithChildren =
 
 interface AuthenticatedAssistantRouteRouteChildren {
   AuthenticatedAssistantDashboardRoute: typeof AuthenticatedAssistantDashboardRoute
+  AuthenticatedAssistantDocumentationRoute: typeof AuthenticatedAssistantDocumentationRoute
   AuthenticatedAssistantNotificationsRoute: typeof AuthenticatedAssistantNotificationsRoute
   AuthenticatedAssistantVisitsRoute: typeof AuthenticatedAssistantVisitsRoute
 }
@@ -853,6 +874,8 @@ interface AuthenticatedAssistantRouteRouteChildren {
 const AuthenticatedAssistantRouteRouteChildren: AuthenticatedAssistantRouteRouteChildren =
   {
     AuthenticatedAssistantDashboardRoute: AuthenticatedAssistantDashboardRoute,
+    AuthenticatedAssistantDocumentationRoute:
+      AuthenticatedAssistantDocumentationRoute,
     AuthenticatedAssistantNotificationsRoute:
       AuthenticatedAssistantNotificationsRoute,
     AuthenticatedAssistantVisitsRoute: AuthenticatedAssistantVisitsRoute,
