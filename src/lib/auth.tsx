@@ -52,9 +52,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       supabase.from("profiles").select("id, full_name, email, phone, avatar_url").eq("id", userId).maybeSingle(),
       supabase.from("user_roles").select("role").eq("user_id", userId),
     ]);
-    setProfile((profileRes.data as Profile | null) ?? null);
+    let profileRow = (profileRes.data as Profile | null) ?? null;
+
+    if (!profileRow) {
+      const { data: userData } = await supabase.auth.getUser();
+      const authUser = userData.user;
+      if (authUser && authUser.id === userId) {
+        const meta = (authUser.user_metadata ?? {}) as Record<string, string | undefined>;
+        const fallbackName = (authUser.email ?? "Pengguna").split("@")[0] ?? "Pengguna";
+        const { data: created } = await supabase
+          .from("profiles")
+          .insert({
+            id: userId,
+            full_name: meta["full_name"] ?? fallbackName,
+            email: authUser.email ?? null,
+            phone: meta["phone"] ?? null,
+          })
+          .select("id, full_name, email, phone, avatar_url")
+          .maybeSingle();
+        profileRow = (created as Profile | null) ?? null;
+      }
+    }
+
+    setProfile(profileRow);
     setRoles(((rolesRes.data ?? []) as { role: AppRole }[]).map((r) => r.role));
   }, []);
+
 
   useEffect(() => {
     let active = true;
