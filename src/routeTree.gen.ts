@@ -51,6 +51,7 @@ import { Route as AuthenticatedOwnerPropertiesRouteImport } from './routes/_auth
 import { Route as AuthenticatedOwnerReportsRouteImport } from './routes/_authenticated/owner/reports'
 import { Route as AuthenticatedOwnerTenantsRouteImport } from './routes/_authenticated/owner/tenants'
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant/dashboard'
+import { Route as AuthenticatedTenantKostRouteImport } from './routes/_authenticated/tenant/kost'
 import { Route as AuthenticatedTenantNotificationsRouteImport } from './routes/_authenticated/tenant/notifications'
 
 const IndexRoute = IndexRouteImport.update({
@@ -293,6 +294,11 @@ const AuthenticatedTenantDashboardRoute =
     path: '/dashboard',
     getParentRoute: () => AuthenticatedTenantRouteRoute,
   } as any)
+const AuthenticatedTenantKostRoute = AuthenticatedTenantKostRouteImport.update({
+  id: '/kost',
+  path: '/kost',
+  getParentRoute: () => AuthenticatedTenantRouteRoute,
+} as any)
 const AuthenticatedTenantNotificationsRoute =
   AuthenticatedTenantNotificationsRouteImport.update({
     id: '/notifications',
@@ -342,6 +348,7 @@ export interface FileRoutesByFullPath {
   '/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRoutesByTo {
@@ -386,6 +393,7 @@ export interface FileRoutesByTo {
   '/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRoutesById {
@@ -432,6 +440,7 @@ export interface FileRoutesById {
   '/_authenticated/owner/reports': typeof AuthenticatedOwnerReportsRoute
   '/_authenticated/owner/tenants': typeof AuthenticatedOwnerTenantsRoute
   '/_authenticated/tenant/dashboard': typeof AuthenticatedTenantDashboardRoute
+  '/_authenticated/tenant/kost': typeof AuthenticatedTenantKostRoute
   '/_authenticated/tenant/notifications': typeof AuthenticatedTenantNotificationsRoute
 }
 export interface FileRouteTypes {
@@ -478,6 +487,7 @@ export interface FileRouteTypes {
     | '/owner/reports'
     | '/owner/tenants'
     | '/tenant/dashboard'
+    | '/tenant/kost'
     | '/tenant/notifications'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -522,6 +532,7 @@ export interface FileRouteTypes {
     | '/owner/reports'
     | '/owner/tenants'
     | '/tenant/dashboard'
+    | '/tenant/kost'
     | '/tenant/notifications'
   id:
     | '__root__'
@@ -567,6 +578,7 @@ export interface FileRouteTypes {
     | '/_authenticated/owner/reports'
     | '/_authenticated/owner/tenants'
     | '/_authenticated/tenant/dashboard'
+    | '/_authenticated/tenant/kost'
     | '/_authenticated/tenant/notifications'
   fileRoutesById: FileRoutesById
 }
@@ -876,6 +888,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTenantDashboardRouteImport
       parentRoute: typeof AuthenticatedTenantRouteRoute
     }
+    '/_authenticated/tenant/kost': {
+      id: '/_authenticated/tenant/kost'
+      path: '/kost'
+      fullPath: '/tenant/kost'
+      preLoaderRoute: typeof AuthenticatedTenantKostRouteImport
+      parentRoute: typeof AuthenticatedTenantRouteRoute
+    }
     '/_authenticated/tenant/notifications': {
       id: '/_authenticated/tenant/notifications'
       path: '/notifications'
@@ -997,12 +1016,14 @@ const AuthenticatedOwnerRouteRouteWithChildren =
 
 interface AuthenticatedTenantRouteRouteChildren {
   AuthenticatedTenantDashboardRoute: typeof AuthenticatedTenantDashboardRoute
+  AuthenticatedTenantKostRoute: typeof AuthenticatedTenantKostRoute
   AuthenticatedTenantNotificationsRoute: typeof AuthenticatedTenantNotificationsRoute
 }
 
 const AuthenticatedTenantRouteRouteChildren: AuthenticatedTenantRouteRouteChildren =
   {
     AuthenticatedTenantDashboardRoute: AuthenticatedTenantDashboardRoute,
+    AuthenticatedTenantKostRoute: AuthenticatedTenantKostRoute,
     AuthenticatedTenantNotificationsRoute:
       AuthenticatedTenantNotificationsRoute,
   }
