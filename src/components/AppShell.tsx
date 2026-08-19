@@ -87,7 +87,8 @@ export function AppShell({ role, children }: { role: AppRole; children: React.Re
   }
 
   return (
-    <div className="min-h-screen lg:flex">
+    <div className="flex h-screen w-full overflow-hidden bg-background">
+      {/* Desktop sidebar — tetap fixed di kiri, scroll hanya di dalam menu */}
       <aside className="hidden w-60 shrink-0 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
         <div className="flex h-14 items-center border-b border-sidebar-border px-3">
           <Brand />
@@ -101,8 +102,9 @@ export function AppShell({ role, children }: { role: AppRole; children: React.Re
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-3 border-b border-border bg-card px-3 sm:px-5">
+      {/* Main area — header tetap, konten halaman yang di-scroll */}
+      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
+        <header className="z-30 flex h-14 shrink-0 items-center justify-between gap-3 border-b border-border bg-card px-3 sm:px-5">
           <div className="flex items-center gap-2">
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
@@ -153,7 +155,11 @@ export function AppShell({ role, children }: { role: AppRole; children: React.Re
           </div>
         </header>
 
-        <main className="mx-auto w-full max-w-[1400px] flex-1 px-4 py-6 sm:px-6">{children}</main>
+        <div className="flex-1 overflow-y-auto">
+          <main className="mx-auto w-full max-w-[1400px] px-4 py-6 sm:px-6">
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   );
